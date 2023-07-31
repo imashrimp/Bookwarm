@@ -74,8 +74,8 @@ class BookWardmCollectionViewController: UICollectionViewController {
         
         let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         
-//        vc.selectedMovie = movieList.movie[indexPath.row].title
-        vc.selectedMovie = movieList.movie[indexPath.row]
+        vc.selectedMovie = movieList.movie[indexPath.row].title
+//        vc.selectedMovie = movieList.movie[indexPath.row]
         
         navigationController?.pushViewController(vc, animated: true)
     }

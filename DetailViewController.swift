@@ -8,17 +8,17 @@
 import UIKit
 
 class DetailViewController: UIViewController {
-
-//    var selectedMovie: String = ""
-//    var movie = MovieList().movie
-    var selectedMovie: Movie?
+    
+    var selectedMovie: String = ""
+    var movie = MovieList().movie
+    //    var selectedMovie: Movie?
     
     @IBOutlet var overviewLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = selectedMovie?.title
+        title = selectedMovie
         
         configureLabel()
         showsendedData()
@@ -29,7 +29,11 @@ class DetailViewController: UIViewController {
     }
     
     func showsendedData() {
-        overviewLabel.text = selectedMovie?.overview
+        //        overviewLabel.text = selectedMovie?.overview
+        for item in movie {
+            if item.title == selectedMovie {
+                overviewLabel.text = item.overview
+            }
+        }
     }
-    
 }
