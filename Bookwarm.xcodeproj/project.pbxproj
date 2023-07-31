@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		178DA4E62A779BFE00FCFECB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA4E52A779BFE00FCFECB /* AppDelegate.swift */; };
 		178DA4E82A779BFE00FCFECB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA4E72A779BFE00FCFECB /* SceneDelegate.swift */; };
-		178DA4EA2A779BFE00FCFECB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA4E92A779BFE00FCFECB /* ViewController.swift */; };
 		178DA4ED2A779BFE00FCFECB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 178DA4EB2A779BFE00FCFECB /* Main.storyboard */; };
 		178DA4EF2A779BFF00FCFECB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 178DA4EE2A779BFF00FCFECB /* Assets.xcassets */; };
 		178DA4F22A779BFF00FCFECB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 178DA4F02A779BFF00FCFECB /* LaunchScreen.storyboard */; };
@@ -17,13 +16,14 @@
 		178DA4FF2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA4FD2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift */; };
 		178DA5002A779D8B00FCFECB /* BookWarmCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 178DA4FE2A779D8B00FCFECB /* BookWarmCollectionViewCell.xib */; };
 		178DA5022A77A4B200FCFECB /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA5012A77A4B200FCFECB /* MovieData.swift */; };
+		178DA5042A77B18600FCFECB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA5032A77B18600FCFECB /* SearchViewController.swift */; };
+		178DA5062A77B59500FCFECB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA5052A77B59500FCFECB /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		178DA4E22A779BFE00FCFECB /* Bookwarm.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Bookwarm.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		178DA4E52A779BFE00FCFECB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		178DA4E72A779BFE00FCFECB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		178DA4E92A779BFE00FCFECB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		178DA4EC2A779BFE00FCFECB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		178DA4EE2A779BFF00FCFECB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		178DA4F12A779BFF00FCFECB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -32,6 +32,8 @@
 		178DA4FD2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWarmCollectionViewCell.swift; sourceTree = "<group>"; };
 		178DA4FE2A779D8B00FCFECB /* BookWarmCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookWarmCollectionViewCell.xib; sourceTree = "<group>"; };
 		178DA5012A77A4B200FCFECB /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
+		178DA5032A77B18600FCFECB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = SOURCE_ROOT; };
+		178DA5052A77B59500FCFECB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,9 +66,10 @@
 		178DA4E42A779BFE00FCFECB /* Bookwarm */ = {
 			isa = PBXGroup;
 			children = (
+				178DA5052A77B59500FCFECB /* DetailViewController.swift */,
+				178DA5032A77B18600FCFECB /* SearchViewController.swift */,
 				178DA4E52A779BFE00FCFECB /* AppDelegate.swift */,
 				178DA4E72A779BFE00FCFECB /* SceneDelegate.swift */,
-				178DA4E92A779BFE00FCFECB /* ViewController.swift */,
 				178DA4EB2A779BFE00FCFECB /* Main.storyboard */,
 				178DA4FD2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift */,
 				178DA5012A77A4B200FCFECB /* MovieData.swift */,
@@ -152,11 +155,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				178DA5022A77A4B200FCFECB /* MovieData.swift in Sources */,
-				178DA4EA2A779BFE00FCFECB /* ViewController.swift in Sources */,
+				178DA5042A77B18600FCFECB /* SearchViewController.swift in Sources */,
 				178DA4E62A779BFE00FCFECB /* AppDelegate.swift in Sources */,
 				178DA4E82A779BFE00FCFECB /* SceneDelegate.swift in Sources */,
 				178DA4FF2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift in Sources */,
 				178DA4FA2A779D3600FCFECB /* BookWardmCollectionViewController.swift in Sources */,
+				178DA5062A77B59500FCFECB /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
