@@ -11,7 +11,6 @@ class DetailViewController: UIViewController {
     
     var selectedMovie: String = ""
     var movie = MovieList().movie
-    //    var selectedMovie: Movie?
     
     @IBOutlet var overviewLabel: UILabel!
     
@@ -31,7 +30,6 @@ class DetailViewController: UIViewController {
     func showsendedData() {
         
         guard let filteredMovie = movie.filter ({ $0.title == selectedMovie }).first else { return }
-        
         overviewLabel.text = filteredMovie.overview
     }
 }

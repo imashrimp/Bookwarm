@@ -40,7 +40,6 @@ class BookWardmCollectionViewController: UICollectionViewController {
     
     func confgureNavigationBar() {
         searchButton.image = UIImage(systemName: "magnifyingglass")
-        navigationController?.navigationBar.tintColor = .black
     }
     
     func setCollectionViewLayout() {

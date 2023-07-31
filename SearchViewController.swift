@@ -28,8 +28,6 @@ class SearchViewController: UIViewController {
     }
     
     func setXButton() {
-        // 네비게이션바 틴트컬러 appDelegate에서 기본 설정으로 해보자
-        navigationController?.navigationBar.tintColor = .black
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissModal))
     }
 
