@@ -94,7 +94,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s6C-is-Isd">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="20" y="79" width="353" height="753"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -103,10 +103,10 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="s6C-is-Isd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="dmO-WG-Cz9"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="s6C-is-Isd" secondAttribute="bottom" id="hSN-dH-rJD"/>
-                            <constraint firstItem="s6C-is-Isd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="hlw-G3-zK4"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s6C-is-Isd" secondAttribute="trailing" id="xE1-ou-kSW"/>
+                            <constraint firstAttribute="bottom" secondItem="s6C-is-Isd" secondAttribute="bottom" constant="20" id="0Yg-F1-GPX"/>
+                            <constraint firstAttribute="trailing" secondItem="s6C-is-Isd" secondAttribute="trailing" constant="20" id="UTl-Ov-LQW"/>
+                            <constraint firstItem="s6C-is-Isd" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="qKp-41-3w4"/>
+                            <constraint firstItem="s6C-is-Isd" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="whe-Ga-jxk"/>
                         </constraints>
                     </view>
                     <connections>
