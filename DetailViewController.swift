@@ -30,9 +30,8 @@ class DetailViewController: UIViewController {
     
     func showsendedData() {
         
-        let filteredMovie: [Movie] = movie.filter { $0.title == selectedMovie }
-        print("걸러진 영화는 \(filteredMovie)")
+        guard let filteredMovie = movie.filter ({ $0.title == selectedMovie }).first else { return }
         
-        overviewLabel.text = filteredMovie[0].overview
+        overviewLabel.text = filteredMovie.overview
     }
 }
