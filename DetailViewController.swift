@@ -66,26 +66,6 @@ class DetailViewController: UIViewController {
     }
     
     func showsendedData() {
-//        guard let filteredMovie = movie.filter ({ $0.title == selectedMovie }).first else { return }
-//
-//        moviePosterImage.image = UIImage(named: filteredMovie.title)
-//        movieTitleLabel.text = filteredMovie.title
-//        releaseDateLabel.text = "개봉일: \(filteredMovie.releaseDate)"
-//        runtimeLabel.text = "상영시간: \(filteredMovie.runtime)분"
-//        rateLabel.text = "평점: \(filteredMovie.rate)점"
-//
-//        overviewTitleLabel.text = "줄거리"
-//        overviewTextView.text = filteredMovie.overview
-//
-//        if filteredMovie.like {
-//            likeImage.image = UIImage(named: "heart.fill")
-//        } else {
-//            likeImage.image = UIImage(named: "heart")
-//        }
-        //이건 클로저 공부하고 왜 이렇게 되는건지 알아보자
-//        filteredMovie.like ?
-//        { self.likeImage.image = UIImage(systemName: "heart.fill") }() :
-//        { self.likeImage.image = UIImage(named: "heart") }()
         
         moviePosterImage.image = UIImage(named: movieData.title)
         movieTitleLabel.text = movieData.title
@@ -97,10 +77,7 @@ class DetailViewController: UIViewController {
         memoTitleLabel.text = "메모"
         overviewTextView.text = movieData.overview
         
-        if movieData.like {
-            likeImage.image = UIImage(systemName: "heart.fill")
-        } else {
-            likeImage.image = UIImage(systemName: "heart")
-        }
+        movieData.like ? ({self.likeImage.image = UIImage(systemName: "heart.fill")})() : ({self.likeImage.image = UIImage(systemName: "heart")})()
+        
     }
 }

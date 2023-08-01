@@ -80,7 +80,7 @@ class BookWardmCollectionViewController: UICollectionViewController {
 
         
         vc.movieData = movieList.movie[indexPath.row]
-        dump(vc.movieData)
+        performsActionsWhilePresentingModally
         navigationController?.pushViewController(vc, animated: true)
     }
 }
