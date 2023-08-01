@@ -19,6 +19,7 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var posterImageView: UIImageView!
+    @IBOutlet var likeButton: UIButton!
     
     
     func configureCellAttribute() {
@@ -27,6 +28,10 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
         
         movieTitleLabel.textColor = .white
         movieTitleLabel.font = .systemFont(ofSize: 20, weight: .bold)
+        
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setTitle("", for: .normal)
+        likeButton.tintColor = .red
         
         ratingLabel.textColor = .white
         ratingLabel.font = .systemFont(ofSize: 20)
@@ -38,6 +43,12 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
         movieTitleLabel.text = movie.title
         ratingLabel.text = "\(movie.rate)점"
         posterImageView.image = UIImage(named: movie.title)
+        
+        if movie.like == true {
+            likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
+        } else {
+            likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        }
     }
     
     

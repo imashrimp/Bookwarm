@@ -9,7 +9,8 @@ import UIKit
 
 class BookWardmCollectionViewController: UICollectionViewController {
     
-    let movieList = MovieList()
+    var movieList = MovieList()
+    
 
     @IBOutlet var searchButton: UIBarButtonItem!
     
@@ -22,10 +23,8 @@ class BookWardmCollectionViewController: UICollectionViewController {
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWarmCollectionViewCell")
 
         setCollectionViewLayout()
-        confgureNavigationBar()
-        
+        confgureNavBarButton()
     }
-    
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -37,8 +36,7 @@ class BookWardmCollectionViewController: UICollectionViewController {
         present(nav, animated: true)
     }
     
-    
-    func confgureNavigationBar() {
+    func confgureNavBarButton() {
         searchButton.image = UIImage(systemName: "magnifyingglass")
     }
     
@@ -63,18 +61,23 @@ class BookWardmCollectionViewController: UICollectionViewController {
         
         cell.configureCellAttribute()
         cell.setUIContents(movie: movieList.movie[indexPath.row])
+        cell.likeButton.tag = indexPath.row
+        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         
         return cell
+    }
+    
+    @objc func likeButtonTapped(_ sender: UIButton) {
+        movieList.movie[sender.tag].like.toggle()
+        collectionView.reloadData()
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         let sb = UIStoryboard(name: "Main", bundle: nil)
-        
         let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
         
         vc.selectedMovie = movieList.movie[indexPath.row].title
-//        vc.selectedMovie = movieList.movie[indexPath.row]
         
         navigationController?.pushViewController(vc, animated: true)
     }

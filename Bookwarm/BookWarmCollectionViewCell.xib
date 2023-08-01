@@ -17,7 +17,7 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gaH-kR-KR1">
-                        <rect key="frame" x="10" y="10" width="184" height="47"/>
+                        <rect key="frame" x="10" y="10" width="182" height="47"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -35,21 +35,31 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xC9-QF-6K1">
+                        <rect key="frame" x="10" y="61" width="86" height="91"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="Button"/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
                 <constraint firstItem="gaH-kR-KR1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="6Kj-bn-Hyz"/>
+                <constraint firstItem="uee-MW-AcT" firstAttribute="top" secondItem="xC9-QF-6K1" secondAttribute="bottom" constant="8" id="Egu-Ie-HkJ"/>
+                <constraint firstAttribute="bottom" secondItem="OJg-Tc-ciS" secondAttribute="bottom" constant="8" id="Q5i-DE-CeL"/>
                 <constraint firstItem="gaH-kR-KR1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="QFu-ll-kOe"/>
                 <constraint firstItem="uee-MW-AcT" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="YWz-l3-Sjb"/>
+                <constraint firstItem="xC9-QF-6K1" firstAttribute="top" secondItem="gaH-kR-KR1" secondAttribute="bottom" constant="4" id="bfr-rX-xfc"/>
                 <constraint firstItem="OJg-Tc-ciS" firstAttribute="top" secondItem="gaH-kR-KR1" secondAttribute="bottom" constant="4" id="h3R-Ia-vNT"/>
                 <constraint firstAttribute="trailing" secondItem="OJg-Tc-ciS" secondAttribute="trailing" constant="8" id="h4f-CU-vy1"/>
+                <constraint firstItem="OJg-Tc-ciS" firstAttribute="leading" secondItem="xC9-QF-6K1" secondAttribute="trailing" constant="8" id="hco-Rv-HCY"/>
+                <constraint firstItem="xC9-QF-6K1" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="10" id="nCi-Rq-ptA"/>
                 <constraint firstAttribute="bottom" secondItem="uee-MW-AcT" secondAttribute="bottom" constant="8" id="saW-0Z-ybO"/>
-                <constraint firstAttribute="trailing" secondItem="gaH-kR-KR1" secondAttribute="trailing" constant="8" id="vdW-oX-SgO"/>
-                <constraint firstAttribute="bottom" secondItem="OJg-Tc-ciS" secondAttribute="bottom" constant="8" id="wDw-Nv-ddn"/>
+                <constraint firstAttribute="trailing" secondItem="gaH-kR-KR1" secondAttribute="trailing" constant="10" id="vdW-oX-SgO"/>
             </constraints>
             <size key="customSize" width="202" height="189"/>
             <connections>
+                <outlet property="likeButton" destination="xC9-QF-6K1" id="P09-J2-GaB"/>
                 <outlet property="movieTitleLabel" destination="gaH-kR-KR1" id="8B1-7y-zwZ"/>
                 <outlet property="posterImageView" destination="OJg-Tc-ciS" id="E4L-WT-dEC"/>
                 <outlet property="ratingLabel" destination="uee-MW-AcT" id="382-h7-ksO"/>

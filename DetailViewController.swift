@@ -18,7 +18,6 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         title = selectedMovie
-        
         configureLabel()
         showsendedData()
     }
@@ -28,7 +27,6 @@ class DetailViewController: UIViewController {
     }
     
     func showsendedData() {
-        
         guard let filteredMovie = movie.filter ({ $0.title == selectedMovie }).first else { return }
         overviewLabel.text = filteredMovie.overview
     }
