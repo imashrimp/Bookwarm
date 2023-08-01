@@ -68,6 +68,7 @@ class BookWardmCollectionViewController: UICollectionViewController {
     }
     
     @objc func likeButtonTapped(_ sender: UIButton) {
+        
         movieList.movie[sender.tag].like.toggle()
         collectionView.reloadData()
     }
@@ -76,9 +77,10 @@ class BookWardmCollectionViewController: UICollectionViewController {
 
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+
         
-        vc.selectedMovie = movieList.movie[indexPath.row].title
-        
+        vc.movieData = movieList.movie[indexPath.row]
+        dump(vc.movieData)
         navigationController?.pushViewController(vc, animated: true)
     }
 }

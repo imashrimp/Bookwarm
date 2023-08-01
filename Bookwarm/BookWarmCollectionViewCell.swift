@@ -44,6 +44,7 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
         ratingLabel.text = "\(movie.rate)점"
         posterImageView.image = UIImage(named: movie.title)
         
+        
         if movie.like == true {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
