@@ -102,13 +102,6 @@
                                             <constraint firstAttribute="width" constant="140" id="PrK-ox-Uyn"/>
                                         </constraints>
                                     </imageView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="50C-8Z-8jh">
-                                        <rect key="frame" x="335" y="139" width="50" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="50" id="hAL-Kk-1aR"/>
-                                            <constraint firstAttribute="height" constant="50" id="j4s-HV-FZc"/>
-                                        </constraints>
-                                    </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cFG-eO-Zeb">
                                         <rect key="frame" x="164" y="11" width="221" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -133,28 +126,34 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UIk-n9-to0">
+                                        <rect key="frame" x="335" y="139" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="IUN-W3-smL"/>
+                                            <constraint firstAttribute="height" constant="50" id="PVB-1d-28Z"/>
+                                        </constraints>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="7km-oj-OEU" secondAttribute="bottom" constant="11" id="0jm-3W-Zuo"/>
                                     <constraint firstAttribute="trailing" secondItem="cFG-eO-Zeb" secondAttribute="trailing" constant="8" id="2Lr-Ar-3Vc"/>
                                     <constraint firstItem="cFG-eO-Zeb" firstAttribute="leading" secondItem="7km-oj-OEU" secondAttribute="trailing" constant="16" id="2kA-OJ-rIz"/>
-                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="PUC-rc-m10" secondAttribute="bottom" constant="12" id="9IW-uH-hA7"/>
                                     <constraint firstItem="qI1-2l-4Nr" firstAttribute="leading" secondItem="Bei-Mv-RPF" secondAttribute="leading" id="CaN-4r-T1E"/>
-                                    <constraint firstAttribute="bottom" secondItem="50C-8Z-8jh" secondAttribute="bottom" constant="11" id="GMd-cy-nlx"/>
-                                    <constraint firstAttribute="trailing" secondItem="50C-8Z-8jh" secondAttribute="trailing" constant="8" id="J8W-l9-Cy9"/>
                                     <constraint firstItem="Bei-Mv-RPF" firstAttribute="top" secondItem="cFG-eO-Zeb" secondAttribute="bottom" constant="12" id="JNi-mU-Q8p"/>
                                     <constraint firstItem="7km-oj-OEU" firstAttribute="top" secondItem="hxp-yl-KAr" secondAttribute="top" constant="11" id="Mwu-H1-hl4"/>
                                     <constraint firstItem="PUC-rc-m10" firstAttribute="top" secondItem="qI1-2l-4Nr" secondAttribute="bottom" constant="12" id="Sjb-fh-jFx"/>
-                                    <constraint firstItem="50C-8Z-8jh" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PUC-rc-m10" secondAttribute="trailing" constant="12" id="VcZ-RZ-gbI"/>
                                     <constraint firstItem="7km-oj-OEU" firstAttribute="leading" secondItem="hxp-yl-KAr" secondAttribute="leading" constant="8" id="WaD-gi-udi"/>
                                     <constraint firstItem="Bei-Mv-RPF" firstAttribute="trailing" secondItem="cFG-eO-Zeb" secondAttribute="trailing" id="Zxh-79-ern"/>
                                     <constraint firstItem="cFG-eO-Zeb" firstAttribute="top" secondItem="hxp-yl-KAr" secondAttribute="top" constant="11" id="aqN-YL-raK"/>
+                                    <constraint firstAttribute="bottom" secondItem="UIk-n9-to0" secondAttribute="bottom" constant="11" id="bDL-Xg-a1l"/>
                                     <constraint firstItem="Bei-Mv-RPF" firstAttribute="leading" secondItem="cFG-eO-Zeb" secondAttribute="leading" id="dXA-aE-eWB"/>
                                     <constraint firstAttribute="height" constant="200" id="dyC-X5-gpl"/>
                                     <constraint firstItem="qI1-2l-4Nr" firstAttribute="top" secondItem="Bei-Mv-RPF" secondAttribute="bottom" constant="12" id="evw-YV-oUr"/>
+                                    <constraint firstAttribute="trailing" secondItem="UIk-n9-to0" secondAttribute="trailing" constant="8" id="goK-E8-oBe"/>
                                     <constraint firstItem="qI1-2l-4Nr" firstAttribute="trailing" secondItem="Bei-Mv-RPF" secondAttribute="trailing" id="hij-6i-OEB"/>
                                     <constraint firstItem="PUC-rc-m10" firstAttribute="leading" secondItem="qI1-2l-4Nr" secondAttribute="leading" id="wUy-UU-Cyf"/>
+                                    <constraint firstItem="UIk-n9-to0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="PUC-rc-m10" secondAttribute="trailing" constant="12" id="ynn-Zo-Qx4"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kCl-mP-Bhj">
@@ -210,7 +209,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="likeImage" destination="50C-8Z-8jh" id="Tkh-KG-G8o"/>
+                        <outlet property="likeImage" destination="UIk-n9-to0" id="Bp9-hd-WgE"/>
                         <outlet property="memoTextView" destination="JFq-9z-h1I" id="64k-TM-RS3"/>
                         <outlet property="memoTitleLabel" destination="X7x-fm-kUR" id="Nbf-7b-xTq"/>
                         <outlet property="moviePosterImage" destination="7km-oj-OEU" id="2gk-yR-F5v"/>

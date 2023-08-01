@@ -11,7 +11,7 @@ class DetailViewController: UIViewController {
     
     //didSet써서 해보자
     
-    var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false)
+    var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false, color: .black)
     
     var selectedMovie: String = ""
     var movie = MovieList().movie
@@ -26,7 +26,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var overviewTextView: UITextView!
     @IBOutlet var memoTitleLabel: UILabel!
     @IBOutlet var memoTextView: UITextView!
-    
+//    @IBOutlet var likeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,6 +44,17 @@ class DetailViewController: UIViewController {
         
         showsendedData()
     }
+    
+//    func configureLikeButton() {
+//        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+//        likeButton.tintColor = .red
+//    }
+    
+//    @objc func likeButtonTapped() {
+//        movieData.like.toggle()
+//
+//        movieData.like ? ({self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)})() : ({self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)})()
+//    }
     
     func configureTextView(textView: UITextView, fontSize: CGFloat, editable: Bool, selectable: Bool, textAlignment: NSTextAlignment) {
         textView.textColor = .black
@@ -77,7 +88,11 @@ class DetailViewController: UIViewController {
         memoTitleLabel.text = "메모"
         overviewTextView.text = movieData.overview
         
+//        movieData.like ? ({self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)})() : ({self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)})()
+        
         movieData.like ? ({self.likeImage.image = UIImage(systemName: "heart.fill")})() : ({self.likeImage.image = UIImage(systemName: "heart")})()
+        
+        
         
     }
 }

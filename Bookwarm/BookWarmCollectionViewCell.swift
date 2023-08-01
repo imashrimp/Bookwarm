@@ -24,7 +24,7 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
     
     func configureCellAttribute() {
         self.layer.cornerRadius = 10
-        self.backgroundColor = randomColor
+        //self.backgroundColor = randomColor
         
         movieTitleLabel.textColor = .white
         movieTitleLabel.font = .systemFont(ofSize: 20, weight: .bold)
@@ -40,11 +40,12 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
     }
     
     func setUIContents(movie: Movie) {
+        print(#function)
         movieTitleLabel.text = movie.title
         ratingLabel.text = "\(movie.rate)점"
         posterImageView.image = UIImage(named: movie.title)
         
-        
+        self.backgroundColor = movie.color
         if movie.like == true {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
