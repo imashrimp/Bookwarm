@@ -26,11 +26,6 @@ class BookWardmCollectionViewController: UICollectionViewController {
         confgureNavBarButton()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print(#function)
-    }
-    
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "SearchViewController")
@@ -58,12 +53,10 @@ class BookWardmCollectionViewController: UICollectionViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        print(#function)
         return movieList.movie.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        print(#function)
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookWarmCollectionViewCell", for: indexPath) as! BookWarmCollectionViewCell
         
         cell.configureCellAttribute()

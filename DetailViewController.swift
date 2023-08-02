@@ -90,7 +90,7 @@ class DetailViewController: UIViewController {
         
 //        movieData.like ? ({self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)})() : ({self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)})()
         
-        movieData.like ? ({self.likeImage.image = UIImage(systemName: "heart.fill")})() : ({self.likeImage.image = UIImage(systemName: "heart")})()
+        movieData.like ? {self.likeImage.image = UIImage(systemName: "heart.fill")}() : {self.likeImage.image = UIImage(systemName: "heart")}()
         
         
         
