@@ -41,42 +41,44 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xnU-F1-MCY">
-                        <rect key="frame" x="164" y="110" width="42" height="21"/>
+                        <rect key="frame" x="164" y="110" width="41.333333333333343" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fps-s1-ZVo">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8QW-My-4tq">
                         <rect key="frame" x="380" y="159" width="50" height="50"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="50" id="g18-ho-EgF"/>
-                            <constraint firstAttribute="height" constant="50" id="iOG-aT-hAG"/>
+                            <constraint firstAttribute="width" constant="50" id="Eyp-3u-S63"/>
+                            <constraint firstAttribute="height" constant="50" id="GsD-bk-h5x"/>
                         </constraints>
-                    </imageView>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    </button>
                 </subviews>
                 <constraints>
                     <constraint firstItem="Yca-Zw-E4v" firstAttribute="leading" secondItem="Q6I-SE-8YN" secondAttribute="leading" id="3XW-X0-Kk4"/>
-                    <constraint firstAttribute="trailing" secondItem="fps-s1-ZVo" secondAttribute="trailing" constant="8" id="3eP-iN-QLY"/>
-                    <constraint firstAttribute="bottom" secondItem="fps-s1-ZVo" secondAttribute="bottom" constant="11" id="8ns-QE-iMf"/>
                     <constraint firstAttribute="trailing" secondItem="oQL-A1-cvR" secondAttribute="trailing" constant="8" id="EH4-zO-uIM"/>
                     <constraint firstItem="oQL-A1-cvR" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="Gpa-yu-VDo"/>
                     <constraint firstItem="oQL-A1-cvR" firstAttribute="leading" secondItem="EZs-dO-cEu" secondAttribute="trailing" constant="16" id="RzJ-HD-Lxi"/>
+                    <constraint firstAttribute="trailing" secondItem="8QW-My-4tq" secondAttribute="trailing" constant="8" id="XWV-p2-sW1"/>
                     <constraint firstItem="Q6I-SE-8YN" firstAttribute="leading" secondItem="oQL-A1-cvR" secondAttribute="leading" id="YSs-Sl-TiK"/>
                     <constraint firstItem="EZs-dO-cEu" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="Ysd-fk-5yR"/>
+                    <constraint firstAttribute="bottom" secondItem="8QW-My-4tq" secondAttribute="bottom" constant="11" id="a4A-i6-MaS"/>
                     <constraint firstItem="Yca-Zw-E4v" firstAttribute="top" secondItem="Q6I-SE-8YN" secondAttribute="bottom" constant="12" id="iQt-Kt-nS3"/>
                     <constraint firstItem="xnU-F1-MCY" firstAttribute="leading" secondItem="Yca-Zw-E4v" secondAttribute="leading" id="kOM-7e-aVt"/>
                     <constraint firstItem="Yca-Zw-E4v" firstAttribute="trailing" secondItem="Q6I-SE-8YN" secondAttribute="trailing" id="mIc-gp-Lf1"/>
                     <constraint firstItem="Q6I-SE-8YN" firstAttribute="trailing" secondItem="oQL-A1-cvR" secondAttribute="trailing" id="pz3-HT-e6K"/>
                     <constraint firstItem="Q6I-SE-8YN" firstAttribute="top" secondItem="oQL-A1-cvR" secondAttribute="bottom" constant="12" id="rnu-dM-Bl9"/>
-                    <constraint firstItem="fps-s1-ZVo" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xnU-F1-MCY" secondAttribute="trailing" constant="12" id="t5U-Uy-1xn"/>
                     <constraint firstItem="xnU-F1-MCY" firstAttribute="top" secondItem="Yca-Zw-E4v" secondAttribute="bottom" constant="12" id="u0d-ZJ-9lk"/>
                     <constraint firstAttribute="bottom" secondItem="EZs-dO-cEu" secondAttribute="bottom" constant="11" id="yAg-YH-WUk"/>
                     <constraint firstItem="EZs-dO-cEu" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="11" id="yCL-a6-iCR"/>
+                    <constraint firstItem="8QW-My-4tq" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="xnU-F1-MCY" secondAttribute="trailing" constant="12" id="yUj-9X-VMj"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="likeImageView" destination="fps-s1-ZVo" id="zHa-fn-U3K"/>
+                <outlet property="likeButton" destination="8QW-My-4tq" id="QC8-Tg-frk"/>
                 <outlet property="movieImageView" destination="EZs-dO-cEu" id="e1D-mb-51V"/>
                 <outlet property="movieTitleLabel" destination="oQL-A1-cvR" id="xqe-lx-imS"/>
                 <outlet property="rateLabel" destination="xnU-F1-MCY" id="Cl0-1o-gG7"/>

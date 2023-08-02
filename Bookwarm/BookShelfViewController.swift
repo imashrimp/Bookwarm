@@ -50,8 +50,15 @@ extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookShelfTableViewCell") as! BookShelfTableViewCell
         cell.showData(movie: movieList[indexPath.row])
+        cell.likeButton.tag = indexPath.row
+        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         
         return cell
+    }
+    
+    @objc func likeButtonTapped(_ sender: UIButton) {
+        movieList[sender.tag].like.toggle()
+        bookshelfTableView.reloadData()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

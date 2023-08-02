@@ -17,7 +17,10 @@ class BookWardmCollectionViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        title = "새우의 책장"
+        self.navigationItem.title = "새우의 책장"
+        self.tabBarController?.tabBar.tintColor = .black
+        self.tabBarController?.tabBar.backgroundColor = .white
+        
         
         let nib = UINib(nibName: "BookWarmCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWarmCollectionViewCell")

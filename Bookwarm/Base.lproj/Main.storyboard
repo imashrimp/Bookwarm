@@ -278,11 +278,11 @@
             </objects>
             <point key="canvasLocation" x="-104.58015267175573" y="1472.5352112676057"/>
         </scene>
-        <!--Item-->
+        <!--책벌레-->
         <scene sceneID="nGe-nQ-HXw">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="KrU-jC-MrO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="j6H-QN-rYn"/>
+                    <tabBarItem key="tabBarItem" title="책벌레" image="ant" catalog="system" selectedImage="ant.fill" id="j6H-QN-rYn"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="JQ3-Zu-2c8">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -316,11 +316,11 @@
             </objects>
             <point key="canvasLocation" x="-1958.0152671755725" y="2.8169014084507045"/>
         </scene>
-        <!--Item-->
+        <!--책장-->
         <scene sceneID="mDq-Mr-oYq">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EXC-hr-kiS" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Wnr-0S-9kY"/>
+                    <tabBarItem key="tabBarItem" title="책장" image="book" catalog="system" selectedImage="book.fill" id="Wnr-0S-9kY"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NXQ-8S-pAo">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
@@ -337,6 +337,10 @@
         </scene>
     </scenes>
     <resources>
+        <image name="ant" catalog="system" width="106" height="128"/>
+        <image name="ant.fill" catalog="system" width="106" height="128"/>
+        <image name="book" catalog="system" width="128" height="99"/>
+        <image name="book.fill" catalog="system" width="128" height="95"/>
         <systemColor name="labelColor">
             <color red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

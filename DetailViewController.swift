@@ -81,6 +81,7 @@ class DetailViewController: UIViewController {
     }
     
     func configureDismissButton() {
+        //MARK: - 이거 이렇게 해도 되는건가?
         if dismissButtonIdentifier {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissDetailVC))
         }

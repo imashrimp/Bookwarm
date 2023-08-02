@@ -15,11 +15,17 @@ class BookShelfTableViewCell: UITableViewCell {
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var runtimeLabel: UILabel!
     @IBOutlet var rateLabel: UILabel!
-    @IBOutlet var likeImageView: UIImageView!
+//    @IBOutlet var likeImageView: UIImageView!
+    @IBOutlet var likeButton: UIButton!
+    
     
     override func awakeFromNib() {
         movieImageView.contentMode = .scaleAspectFit
-        likeImageView.tintColor = .red
+        //        likeImageView.tintColor = .red
+        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
+        likeButton.setTitle("", for: .normal)
+        likeButton.tintColor = .red
+
         
         configureLabel(label: movieTitleLabel, fontSize: 17, textColor: .black, textAlignment: .left)
         configureLabel(label: releaseDateLabel, fontSize: 15, textColor: .black, textAlignment: .left)
@@ -34,9 +40,10 @@ class BookShelfTableViewCell: UITableViewCell {
         runtimeLabel.text = "\(movie.runtime)분"
         rateLabel.text = "\(movie.rate)점"
         
-        movie.like ? {self.likeImageView.image = UIImage(systemName: "heart.fill")}() : {self.likeImageView.image = UIImage(systemName: "heart")}()
+//        movie.like ? {self.likeImageView.image = UIImage(systemName: "heart.fill")}() : {self.likeImageView.image = UIImage(systemName: "heart")}()
+        
+        movie.like ? {self.likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)}() : {self.likeButton.setImage(UIImage(systemName: "heart"), for: .normal)}()
     }
-    
     
     func configureLabel(label: UILabel, fontSize: CGFloat, textColor: UIColor, textAlignment: NSTextAlignment ) {
         

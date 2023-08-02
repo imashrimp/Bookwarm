@@ -9,13 +9,6 @@ import UIKit
 
 class BookWarmCollectionViewCell: UICollectionViewCell {
     
-    var randomColor: UIColor {
-        UIColor(red: .random(in: 0...1),
-                green: .random(in: 0...1),
-                blue: .random(in: 0...1),
-                alpha: 1)
-    }
-    
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var posterImageView: UIImageView!
@@ -24,12 +17,10 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
     
     func configureCellAttribute() {
         self.layer.cornerRadius = 10
-        //self.backgroundColor = randomColor
         
         movieTitleLabel.textColor = .white
         movieTitleLabel.font = .systemFont(ofSize: 20, weight: .bold)
         
-        likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setTitle("", for: .normal)
         likeButton.tintColor = .red
         
