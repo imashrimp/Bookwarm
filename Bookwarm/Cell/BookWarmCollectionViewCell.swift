@@ -40,7 +40,6 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
     }
     
     func setUIContents(movie: Movie) {
-        print(#function)
         movieTitleLabel.text = movie.title
         ratingLabel.text = "\(movie.rate)점"
         posterImageView.image = UIImage(named: movie.title)
