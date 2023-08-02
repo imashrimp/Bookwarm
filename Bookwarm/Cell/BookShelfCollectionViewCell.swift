@@ -17,5 +17,6 @@ class BookShelfCollectionViewCell: UICollectionViewCell {
     
     func showMovieImage(movie: Movie) {
         movieImageView.image = UIImage(named: movie.title)
+        self.backgroundColor = movie.color
     }
 }

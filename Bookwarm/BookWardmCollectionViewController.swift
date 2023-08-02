@@ -24,6 +24,7 @@ class BookWardmCollectionViewController: UICollectionViewController {
         
         let nib = UINib(nibName: "BookWarmCollectionViewCell", bundle: nil)
         collectionView.register(nib, forCellWithReuseIdentifier: "BookWarmCollectionViewCell")
+        collectionView.bounces = false
 
         setCollectionViewLayout()
         confgureNavBarButton()

@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var dismissButtonIdentifier = false
+    var transitionTypeID: Int = 1
     var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false, color: .black)
     
     var selectedMovie: String = ""
@@ -25,7 +25,6 @@ class DetailViewController: UIViewController {
     @IBOutlet var overviewTextView: UITextView!
     @IBOutlet var memoTitleLabel: UILabel!
     @IBOutlet var memoTextView: UITextView!
-    //    @IBOutlet var likeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,13 +81,12 @@ class DetailViewController: UIViewController {
     
     func configureDismissButton() {
         //MARK: - 이거 이렇게 해도 되는건가?
-        if dismissButtonIdentifier {
+        if transitionTypeID == TransitionID.present.rawValue {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissDetailVC))
         }
     }
     
     @objc func dismissDetailVC() {
         dismiss(animated: true)
-        
     }
 }

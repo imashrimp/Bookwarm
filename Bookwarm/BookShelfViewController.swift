@@ -21,8 +21,7 @@ class BookShelfViewController: UIViewController {
         bookshelfTableView.dataSource = self
         bookshelfTableView.delegate = self
         bookshelfTableView.rowHeight = 200
-        
-        
+        bookshelfTableView.bounces = false
         
         self.navigationController?.navigationBar.isHidden = true
         
@@ -36,9 +35,6 @@ class BookShelfViewController: UIViewController {
         let collectionViewCellNib = UINib(nibName: "BookShelfCollectionViewCell", bundle: nil)
         bookshelfCollectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "BookShelfCollectionViewCell")
     }
-    
-    
-    
 }
 
 extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
@@ -69,9 +65,11 @@ extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
         nav.modalPresentationStyle = .fullScreen
         
         vc.movieData = movieList[indexPath.row]
-        vc.dismissButtonIdentifier = true
+        vc.transitionTypeID = TransitionID.present.rawValue
         
         present(nav, animated: true)
+        
+        tableView.reloadRows(at: [indexPath], with: .none)
     }
     
 }
@@ -87,6 +85,8 @@ extension BookShelfViewController: UICollectionViewDelegate, UICollectionViewDat
         layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
         layout.minimumInteritemSpacing = 8
         bookshelfCollectionView.collectionViewLayout = layout
+        bookshelfCollectionView.isPagingEnabled = true
+        bookshelfCollectionView.bounces = false
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
