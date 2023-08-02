@@ -9,9 +9,13 @@ import UIKit
 
 class BookShelfCollectionViewCell: UICollectionViewCell {
 
+    @IBOutlet var movieImageView: UIImageView!
+    
     override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+        movieImageView.contentMode = .scaleAspectFit
     }
-
+    
+    func showMovieImage(movie: Movie) {
+        movieImageView.image = UIImage(named: movie.title)
+    }
 }

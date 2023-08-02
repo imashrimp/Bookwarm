@@ -60,9 +60,9 @@
 		1720A1632A7A31B8000E1E1B /* XIB */ = {
 			isa = PBXGroup;
 			children = (
+				178DA4FE2A779D8B00FCFECB /* BookWarmCollectionViewCell.xib */,
 				1720A1662A7A3387000E1E1B /* BookShelfCollectionViewCell.xib */,
 				1720A1602A7A3188000E1E1B /* BookShelfTableViewCell.xib */,
-				178DA4FE2A779D8B00FCFECB /* BookWarmCollectionViewCell.xib */,
 			);
 			path = XIB;
 			sourceTree = "<group>";

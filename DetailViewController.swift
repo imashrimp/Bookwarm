@@ -9,8 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    //didSet써서 해보자
-    
+    var dismissButtonIdentifier = false
     var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false, color: .black)
     
     var selectedMovie: String = ""
@@ -26,7 +25,7 @@ class DetailViewController: UIViewController {
     @IBOutlet var overviewTextView: UITextView!
     @IBOutlet var memoTitleLabel: UILabel!
     @IBOutlet var memoTextView: UITextView!
-//    @IBOutlet var likeButton: UIButton!
+    //    @IBOutlet var likeButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +42,7 @@ class DetailViewController: UIViewController {
         configureTextView(textView: memoTextView, fontSize: 13, editable: true, selectable: true, textAlignment: .left)
         
         showsendedData()
+        configureDismissButton()
     }
     
     func configureTextView(textView: UITextView, fontSize: CGFloat, editable: Bool, selectable: Bool, textAlignment: NSTextAlignment) {
@@ -78,8 +78,16 @@ class DetailViewController: UIViewController {
         overviewTextView.text = movieData.overview
         
         movieData.like ? {self.likeImage.image = UIImage(systemName: "heart.fill")}() : {self.likeImage.image = UIImage(systemName: "heart")}()
-        
-        
+    }
+    
+    func configureDismissButton() {
+        if dismissButtonIdentifier {
+            navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissDetailVC))
+        }
+    }
+    
+    @objc func dismissDetailVC() {
+        dismiss(animated: true)
         
     }
 }

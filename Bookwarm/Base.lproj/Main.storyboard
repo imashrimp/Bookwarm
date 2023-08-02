@@ -270,6 +270,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="MAC-la-hh9"/>
                     <connections>
+                        <outlet property="bookshelfCollectionView" destination="YX5-pY-t33" id="hdX-dY-SPh"/>
                         <outlet property="bookshelfTableView" destination="M9i-lK-UjM" id="XJX-qm-edu"/>
                     </connections>
                 </viewController>

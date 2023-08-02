@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="BookShelfCollectionViewCell" customModule="Bookwarm" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="BookShelfCollectionViewCell" id="gTV-IL-0wX" customClass="BookShelfCollectionViewCell" customModule="Bookwarm" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="252" height="236"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
@@ -29,6 +29,9 @@
                 <constraint firstItem="wKZ-L8-6Po" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="yqo-rk-63H"/>
             </constraints>
             <size key="customSize" width="252" height="236"/>
+            <connections>
+                <outlet property="movieImageView" destination="wKZ-L8-6Po" id="Dh7-mK-CFw"/>
+            </connections>
             <point key="canvasLocation" x="170.99236641221373" y="85.211267605633807"/>
         </collectionViewCell>
     </objects>

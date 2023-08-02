@@ -13,6 +13,7 @@ class BookShelfViewController: UIViewController {
     
     
     @IBOutlet var bookshelfTableView: UITableView!
+    @IBOutlet var bookshelfCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,25 +21,34 @@ class BookShelfViewController: UIViewController {
         bookshelfTableView.dataSource = self
         bookshelfTableView.delegate = self
         bookshelfTableView.rowHeight = 200
+        
+        
+        
         self.navigationController?.navigationBar.isHidden = true
         
         let tableViewCellNib = UINib(nibName: "BookShelfTableViewCell", bundle: nil)
         bookshelfTableView.register(tableViewCellNib, forCellReuseIdentifier: "BookShelfTableViewCell")
+        
+        bookshelfCollectionView.dataSource = self
+        bookshelfCollectionView.delegate = self
+        configureCollectionViewLayout()
+        
+        let collectionViewCellNib = UINib(nibName: "BookShelfCollectionViewCell", bundle: nil)
+        bookshelfCollectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "BookShelfCollectionViewCell")
     }
+    
+    
+    
 }
 
 extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(#function)
         return movieList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        print(#function)
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookShelfTableViewCell") as! BookShelfTableViewCell
-        
         cell.showData(movie: movieList[indexPath.row])
         
         return cell
@@ -51,9 +61,36 @@ extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
         
         nav.modalPresentationStyle = .fullScreen
         
-        //여기서 데이터 전달
+        vc.movieData = movieList[indexPath.row]
+        vc.dismissButtonIdentifier = true
         
         present(nav, animated: true)
     }
     
+}
+
+extension BookShelfViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    
+    func configureCollectionViewLayout() {
+        let layout = UICollectionViewFlowLayout()
+        let height = UIScreen.main.bounds.height / 5
+        
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 100, height: height)
+        layout.sectionInset = UIEdgeInsets(top: 8, left: 8, bottom: 8, right: 8)
+        layout.minimumInteritemSpacing = 8
+        bookshelfCollectionView.collectionViewLayout = layout
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return movieList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookShelfCollectionViewCell", for: indexPath) as! BookShelfCollectionViewCell
+        
+        cell.showMovieImage(movie: movieList[indexPath.item])
+        
+        return cell
+    }
 }
