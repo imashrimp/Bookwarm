@@ -5,13 +5,16 @@
 //  Created by 권현석 on 2023/07/31.
 //
 
+//MARK: - 키보드 문제는 외부 라이브러리 사용해서 해결해보자
+
 import UIKit
 
 class DetailViewController: UIViewController {
     
-    var transitionTypeID: Int = 1
+    var transitionTypeID: TransitionID?
     var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false, color: .black)
     
+    var textViewPlaceholder: String = "후기를 작성해주세요."
     var selectedMovie: String = ""
     var movie = MovieList().movie
     
@@ -29,6 +32,7 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        memoTextView.delegate = self
         title = selectedMovie
         configureMovieImage()
         configureLabel(label: movieTitleLabel, fontSize: 13, fontWeight: .bold, textColor: .black, textAlignment: .left)
@@ -42,6 +46,8 @@ class DetailViewController: UIViewController {
         
         showsendedData()
         configureDismissButton()
+        
+        memoTextView.text = textViewPlaceholder
     }
     
     func configureTextView(textView: UITextView, fontSize: CGFloat, editable: Bool, selectable: Bool, textAlignment: NSTextAlignment) {
@@ -81,12 +87,24 @@ class DetailViewController: UIViewController {
     
     func configureDismissButton() {
         //MARK: - 이거 이렇게 해도 되는건가?
-        if transitionTypeID == TransitionID.present.rawValue {
+        if transitionTypeID == TransitionID.present {
             navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "xmark"), style: .plain, target: self, action: #selector(dismissDetailVC))
         }
     }
     
     @objc func dismissDetailVC() {
         dismiss(animated: true)
+    }
+}
+
+
+extension DetailViewController: UITextViewDelegate {
+    // 애초에 처음에 들어갈 때 textView에 들어갈 값이 있어야함.
+    //
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.text == textViewPlaceholder {
+            textView.text = nil
+            textView.textColor = .black
+        }
     }
 }

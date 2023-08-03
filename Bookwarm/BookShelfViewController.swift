@@ -7,8 +7,8 @@
 
 import UIKit
 
-class BookShelfViewController: UIViewController {
-
+class BookShelfViewController: UIViewController, LikeButtonProtocol {
+    
     var movieList = MovieList().movie
     
     
@@ -32,8 +32,8 @@ class BookShelfViewController: UIViewController {
         bookshelfCollectionView.delegate = self
         configureCollectionViewLayout()
         
-        let collectionViewCellNib = UINib(nibName: "BookShelfCollectionViewCell", bundle: nil)
-        bookshelfCollectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "BookShelfCollectionViewCell")
+        let nib = UINib(nibName: "BookShelfCollectionViewCell", bundle: nil)
+        bookshelfCollectionView.register(nib, forCellWithReuseIdentifier: "BookShelfCollectionViewCell")
     }
 }
 
@@ -45,7 +45,7 @@ extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "BookShelfTableViewCell") as! BookShelfTableViewCell
-        cell.showData(movie: movieList[indexPath.row])
+        cell.showCellContents(movie: movieList[indexPath.row])
         cell.likeButton.tag = indexPath.row
         cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
         
@@ -65,7 +65,7 @@ extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
         nav.modalPresentationStyle = .fullScreen
         
         vc.movieData = movieList[indexPath.row]
-        vc.transitionTypeID = TransitionID.present.rawValue
+        vc.transitionTypeID = TransitionID.present
         
         present(nav, animated: true)
         
@@ -74,7 +74,7 @@ extension BookShelfViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
-extension BookShelfViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+extension BookShelfViewController: UICollectionViewDelegate, UICollectionViewDataSource, CellFlowLayoutProtocol {
     
     func configureCollectionViewLayout() {
         let layout = UICollectionViewFlowLayout()
@@ -96,7 +96,7 @@ extension BookShelfViewController: UICollectionViewDelegate, UICollectionViewDat
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookShelfCollectionViewCell", for: indexPath) as! BookShelfCollectionViewCell
         
-        cell.showMovieImage(movie: movieList[indexPath.item])
+        cell.showCellContents(movie: movieList[indexPath.item])
         
         return cell
     }

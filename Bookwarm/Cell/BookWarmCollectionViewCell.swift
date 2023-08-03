@@ -7,12 +7,14 @@
 
 import UIKit
 
-class BookWarmCollectionViewCell: UICollectionViewCell {
+class BookWarmCollectionViewCell: UICollectionViewCell, CellConfigureProtocol {
     
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet var ratingLabel: UILabel!
     @IBOutlet var posterImageView: UIImageView!
     @IBOutlet var likeButton: UIButton!
+    
+    // awakeFromNib
     
     
     func configureCellAttribute() {
@@ -30,18 +32,17 @@ class BookWarmCollectionViewCell: UICollectionViewCell {
         posterImageView.contentMode = .scaleAspectFit
     }
     
-    func setUIContents(movie: Movie) {
+    func showCellContents(movie: Movie) {
         movieTitleLabel.text = movie.title
         ratingLabel.text = "\(movie.rate)점"
         posterImageView.image = UIImage(named: movie.title)
         
         self.backgroundColor = movie.color
+        
         if movie.like == true {
             likeButton.setImage(UIImage(systemName: "heart.fill"), for: .normal)
         } else {
             likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         }
     }
-    
-    
 }

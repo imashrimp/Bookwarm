@@ -7,7 +7,7 @@
 
 import UIKit
 
-class BookShelfCollectionViewCell: UICollectionViewCell {
+class BookShelfCollectionViewCell: UICollectionViewCell, CellConfigureProtocol {
 
     @IBOutlet var movieImageView: UIImageView!
     
@@ -15,7 +15,7 @@ class BookShelfCollectionViewCell: UICollectionViewCell {
         movieImageView.contentMode = .scaleAspectFit
     }
     
-    func showMovieImage(movie: Movie) {
+    func showCellContents(movie: Movie) {
         movieImageView.image = UIImage(named: movie.title)
         self.backgroundColor = movie.color
     }
