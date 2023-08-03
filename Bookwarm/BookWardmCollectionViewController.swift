@@ -83,6 +83,11 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
             movieList.movie[sender.tag].like.toggle()
         } else {
             searchMovieList[sender.tag].like.toggle()
+            for i in 0..<movieList.movie.count {
+                if movieList.movie[i].title == searchMovieList[sender.tag].title {
+                    movieList.movie[i].like.toggle()
+                }
+            }
         }
         collectionView.reloadData()
     }
@@ -119,6 +124,7 @@ extension BookWardmCollectionViewController: UISearchBarDelegate {
                 searchMovieList.append(movieList.movie[i])
             }
         }
+        
         if let characterCount = searchBar.text?.count {
             if characterCount == 0 {
                 searchBarState = .empty
@@ -128,6 +134,7 @@ extension BookWardmCollectionViewController: UISearchBarDelegate {
         }
         collectionView.reloadData()
     }
+    
 }
 
 extension BookWardmCollectionViewController: CellFlowLayoutProtocol {
