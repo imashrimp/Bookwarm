@@ -53,8 +53,6 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
         searchButton.image = UIImage(systemName: "magnifyingglass")
     }
     
-
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 //        return movieList.movie.count
         return searchMovieList.count
@@ -94,6 +92,7 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
 extension BookWardmCollectionViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchMovieList.removeAll()
         searchBar.text = ""
         collectionView.reloadData()
     }
