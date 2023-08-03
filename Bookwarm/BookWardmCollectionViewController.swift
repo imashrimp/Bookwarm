@@ -11,11 +11,8 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
     
     var movieList = MovieList()
     let searchBar = UISearchBar()
-    var searchMovieList: [Movie] = [] /*{
-        didSet {
-            collectionView.reloadData()
-        }
-    }*/
+    var searchMovieList: [Movie] = []
+    var searchBarState: SearchBarTextState = .empty
 
     @IBOutlet var searchButton: UIBarButtonItem!
     
@@ -26,6 +23,7 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
         searchBar.showsCancelButton = true
         searchBar.delegate = self
         searchBar.placeholder = "영화를 검색하세요."
+        searchBar.searchBarStyle = .prominent
         
         self.navigationItem.title = "새우의 책장"
         self.tabBarController?.tabBar.tintColor = .black
@@ -55,9 +53,7 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
-        guard let keywordCount = searchBar.text?.count else { return 0 } // 셀 하나를 뱉어서 그 오류용 셀을 하나 세팅하는건 어떤가?
-
-        if keywordCount == 0 {
+        if searchBarState == .empty {
             return movieList.movie.count
         } else {
             return searchMovieList.count
@@ -69,9 +65,7 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
         
         cell.configureCellAttribute()
         
-        guard let keywordCount = searchBar.text?.count else { return cell }
-        
-        if keywordCount == 0 {
+        if searchBarState == .empty {
             cell.showCellContents(movie: movieList.movie[indexPath.row])
         } else {
             cell.showCellContents(movie: searchMovieList[indexPath.row])
@@ -84,10 +78,8 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
     }
     
     @objc func likeButtonTapped(_ sender: UIButton) {
-
-        guard let keyCount = searchBar.text?.count else { return }
         
-        if keyCount == 0 {
+        if searchBarState == .empty {
             movieList.movie[sender.tag].like.toggle()
         } else {
             searchMovieList[sender.tag].like.toggle()
@@ -99,10 +91,8 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
 
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-
-        guard let keyCount = searchBar.text?.count else { return }
         
-        if keyCount == 0 {
+        if searchBarState == .empty {
             vc.movieData = movieList.movie[indexPath.row]
         } else {
             vc.movieData = searchMovieList[indexPath.row]
@@ -118,16 +108,22 @@ extension BookWardmCollectionViewController: UISearchBarDelegate {
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchMovieList.removeAll()
         searchBar.text = ""
+        searchBarState = .empty
         collectionView.reloadData()
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchMovieList.removeAll()
         for i in 0..<movieList.movie.count {
-            print(searchText)
             if movieList.movie[i].title.contains(searchText) {
                 searchMovieList.append(movieList.movie[i])
-                print(movieList.movie[i])
+            }
+        }
+        if let characterCount = searchBar.text?.count {
+            if characterCount == 0 {
+                searchBarState = .empty
+            } else {
+                searchBarState = .filled
             }
         }
         collectionView.reloadData()

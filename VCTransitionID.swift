@@ -14,3 +14,8 @@ enum TransitionID {
     case present
     case push
 }
+
+enum SearchBarTextState {
+    case empty
+    case filled
+}
