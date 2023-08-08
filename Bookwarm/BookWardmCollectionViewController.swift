@@ -5,15 +5,18 @@
 //  Created by 권현석 on 2023/07/31.
 //
 
+//MARK: - 프로퍼티 감시자 사용해서 컬렉션뷰가 업데이트 되도록 해보자
+
 import UIKit
+import SwiftyJSON
+import Alamofire
 
-class BookWardmCollectionViewController: UICollectionViewController, LikeButtonProtocol {
+class BookWardmCollectionViewController: UICollectionViewController {
     
-    var movieList = MovieList()
+    var bookList: [Book] = []
+    
     let searchBar = UISearchBar()
-    var searchMovieList: [Movie] = []
-    var searchBarState: SearchBarTextState = .empty
-
+    
     @IBOutlet var searchButton: UIBarButtonItem!
     
     override func viewDidLoad() {
@@ -22,119 +25,84 @@ class BookWardmCollectionViewController: UICollectionViewController, LikeButtonP
         navigationItem.titleView = searchBar
         searchBar.showsCancelButton = true
         searchBar.delegate = self
-        searchBar.placeholder = "영화를 검색하세요."
+        searchBar.placeholder = "도서명을 검색하세요."
         searchBar.searchBarStyle = .prominent
         
         self.navigationItem.title = "새우의 책장"
         self.tabBarController?.tabBar.tintColor = .black
         self.tabBarController?.tabBar.backgroundColor = .white
         
-        let collectionViewCellNib = UINib(nibName: "BookWarmCollectionViewCell", bundle: nil)
-        collectionView.register(collectionViewCellNib, forCellWithReuseIdentifier: "BookWarmCollectionViewCell")
+        let bookCellNib = UINib(nibName: "KaKaoBookCollectionViewCell", bundle: nil)
+        collectionView.register(bookCellNib, forCellWithReuseIdentifier: "KaKaoBookCollectionViewCell")
+        
         collectionView.bounces = false
-
+        
         configureCollectionViewLayout()
         confgureNavBarButton()
+        
     }
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "SearchViewController")
-        let nav = UINavigationController(rootViewController: vc)
-        
-        nav.modalPresentationStyle = .fullScreen
-        
-        present(nav, animated: true)
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = sb.instantiateViewController(withIdentifier: "SearchViewController")
+//        let nav = UINavigationController(rootViewController: vc)
+//
+//        nav.modalPresentationStyle = .fullScreen
+//
+//        present(nav, animated: true)
+        collectionView.reloadData()
     }
+    
+    @IBAction func tappedToDismissKeyboard(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
     
     func confgureNavBarButton() {
         searchButton.image = UIImage(systemName: "magnifyingglass")
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-
-        if searchBarState == .empty {
-            return movieList.movie.count
-        } else {
-            return searchMovieList.count
-        }
+        return bookList.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "BookWarmCollectionViewCell", for: indexPath) as! BookWarmCollectionViewCell
         
-        cell.configureCellAttribute()
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KaKaoBookCollectionViewCell", for: indexPath) as! KaKaoBookCollectionViewCell
         
-        if searchBarState == .empty {
-            cell.showCellContents(movie: movieList.movie[indexPath.row])
-        } else {
-            cell.showCellContents(movie: searchMovieList[indexPath.row])
-        }
-        
-        cell.likeButton.tag = indexPath.row
-        cell.likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        cell.showBookContents(book: bookList[indexPath.row])
         
         return cell
     }
     
-    @objc func likeButtonTapped(_ sender: UIButton) {
-        
-        if searchBarState == .empty {
-            movieList.movie[sender.tag].like.toggle()
-        } else {
-            searchMovieList[sender.tag].like.toggle()
-            for i in 0..<movieList.movie.count {
-                if movieList.movie[i].title == searchMovieList[sender.tag].title {
-                    movieList.movie[i].like.toggle()
-                }
-            }
-        }
-        collectionView.reloadData()
-    }
-    
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
+        
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-        
-        if searchBarState == .empty {
-            vc.movieData = movieList.movie[indexPath.row]
-        } else {
-            vc.movieData = searchMovieList[indexPath.row]
-        }
 
-        vc.transitionTypeID = TransitionID.push
+        vc.book = bookList[indexPath.row]
+        
         navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension BookWardmCollectionViewController: UISearchBarDelegate {
     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard let keyword = searchBar.text else {
+            callRequest(keyword: "")
+            return
+        }
+        callRequest(keyword: keyword)
+
+    }
+    
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchMovieList.removeAll()
         searchBar.text = ""
-        searchBarState = .empty
+        bookList.removeAll()
         collectionView.reloadData()
     }
-    
-    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchMovieList.removeAll()
-        for i in 0..<movieList.movie.count {
-            if movieList.movie[i].title.contains(searchText) {
-                searchMovieList.append(movieList.movie[i])
-            }
-        }
-        
-        if let characterCount = searchBar.text?.count {
-            if characterCount == 0 {
-                searchBarState = .empty
-            } else {
-                searchBarState = .filled
-            }
-        }
-        collectionView.reloadData()
-    }
-    
 }
 
 extension BookWardmCollectionViewController: CellFlowLayoutProtocol {
@@ -149,5 +117,37 @@ extension BookWardmCollectionViewController: CellFlowLayoutProtocol {
         layout.minimumLineSpacing = spacing
         layout.minimumInteritemSpacing = spacing
         collectionView.collectionViewLayout = layout
+    }
+}
+
+
+extension BookWardmCollectionViewController {
+    func callRequest(keyword: String) {
+        
+        //MARK: - text가 빈 경우 대체 텍스트 넣어주기
+        let text = "\(keyword)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
+        let header: HTTPHeaders = ["Authorization": "KakaoAK 4ff3c73e4fc0c6d0b359297fb7f949ba"]
+        
+        AF.request(url, method: .get, headers: header).validate().responseJSON { response in
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                
+                var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0)
+                for item in json["documents"].arrayValue {
+                    book.title = item["title"].stringValue
+                    book.author = item["authors"].stringValue
+                    book.thumbnail = item["thumbnail"].stringValue
+                    book.overview = item["contents"].stringValue
+                    book.price = item["price"].intValue
+                    self.bookList.append(book)
+                }
+                print(self.bookList)
+                
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }

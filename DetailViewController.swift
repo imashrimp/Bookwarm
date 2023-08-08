@@ -9,21 +9,20 @@
 
 import UIKit
 
+import Kingfisher
+
 class DetailViewController: UIViewController {
     
     var transitionTypeID: TransitionID?
     var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false, color: .black)
-    
+    var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0)
     var textViewPlaceholder: String = "후기를 작성해주세요."
-    var selectedMovie: String = ""
-    var movie = MovieList().movie
     
     @IBOutlet var moviePosterImage: UIImageView!
     @IBOutlet var movieTitleLabel: UILabel!
     @IBOutlet var releaseDateLabel: UILabel!
     @IBOutlet var runtimeLabel: UILabel!
     @IBOutlet var rateLabel: UILabel!
-    @IBOutlet var likeImage: UIImageView!
     @IBOutlet var overviewTitleLabel: UILabel!
     @IBOutlet var overviewTextView: UITextView!
     @IBOutlet var memoTitleLabel: UILabel!
@@ -33,7 +32,7 @@ class DetailViewController: UIViewController {
         super.viewDidLoad()
         
         memoTextView.delegate = self
-        title = selectedMovie
+        title = book.title
         configureMovieImage()
         configureLabel(label: movieTitleLabel, fontSize: 13, fontWeight: .bold, textColor: .black, textAlignment: .left)
         configureLabel(label: releaseDateLabel, fontSize: 13, fontWeight: .regular, textColor: .black, textAlignment: .left)
@@ -60,7 +59,6 @@ class DetailViewController: UIViewController {
     
     func configureMovieImage() {
         moviePosterImage.contentMode = .scaleAspectFit
-        likeImage.tintColor = .red
     }
     
     func configureLabel(label: UILabel, fontSize: CGFloat, fontWeight: UIFont.Weight, textColor: UIColor, textAlignment: NSTextAlignment ) {
@@ -68,21 +66,25 @@ class DetailViewController: UIViewController {
         label.font = .systemFont(ofSize: fontSize, weight: fontWeight)
         label.textColor = textColor
         label.textAlignment = textAlignment
+        label.numberOfLines = 0
     }
     
     func showsendedData() {
         
-        moviePosterImage.image = UIImage(named: movieData.title)
+        guard let imageUrl = URL(string: book.thumbnail) else {
+            moviePosterImage.image = UIImage(systemName: "book.fill")
+            return
+        }
+        moviePosterImage.kf.setImage(with: imageUrl)
         movieTitleLabel.text = movieData.title
-        releaseDateLabel.text = "개봉일: \(movieData.releaseDate)"
-        runtimeLabel.text = "상영시간: \(movieData.runtime)분"
-        rateLabel.text = "평점: \(movieData.rate)점"
+        releaseDateLabel.text = "도서명: \(book.title)"
+        runtimeLabel.text = "저자: \(book.author)"
+        rateLabel.text = "정가: \(book.price)원"
+        
         
         overviewTitleLabel.text = "줄거리"
         memoTitleLabel.text = "메모"
-        overviewTextView.text = movieData.overview
-        
-        movieData.like ? {self.likeImage.image = UIImage(systemName: "heart.fill")}() : {self.likeImage.image = UIImage(systemName: "heart")}()
+        overviewTextView.text = book.overview
     }
     
     func configureDismissButton() {
@@ -99,8 +101,7 @@ class DetailViewController: UIViewController {
 
 
 extension DetailViewController: UITextViewDelegate {
-    // 애초에 처음에 들어갈 때 textView에 들어갈 값이 있어야함.
-    //
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.text == textViewPlaceholder {
             textView.text = nil

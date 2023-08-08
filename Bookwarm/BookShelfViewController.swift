@@ -17,7 +17,6 @@ class BookShelfViewController: UIViewController, LikeButtonProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         bookshelfTableView.dataSource = self
         bookshelfTableView.delegate = self
         bookshelfTableView.rowHeight = 200

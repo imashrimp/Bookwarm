@@ -17,6 +17,7 @@ class BookShelfTableViewCell: UITableViewCell, CellConfigureProtocol {
     @IBOutlet var likeButton: UIButton!
     
     override func awakeFromNib() {
+
         movieImageView.contentMode = .scaleAspectFit
         likeButton.setImage(UIImage(systemName: "heart"), for: .normal)
         likeButton.setTitle("", for: .normal)
