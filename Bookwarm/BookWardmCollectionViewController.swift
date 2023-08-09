@@ -14,27 +14,24 @@ import Alamofire
 class BookWardmCollectionViewController: UICollectionViewController {
     
     var bookList: [Book] = []
+    var page: Int = 1
+    var isEnd: Bool = false
     
     let searchBar = UISearchBar()
+
+    
     
     @IBOutlet var searchButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        navigationItem.titleView = searchBar
-        searchBar.showsCancelButton = true
-        searchBar.delegate = self
-        searchBar.placeholder = "도서명을 검색하세요."
-        searchBar.searchBarStyle = .prominent
+        configureSearchBar()
+        configureNavAndTabBar()
+        registerNib()
         
-        self.navigationItem.title = "새우의 책장"
-        self.tabBarController?.tabBar.tintColor = .black
-        self.tabBarController?.tabBar.backgroundColor = .white
         
-        let bookCellNib = UINib(nibName: "KaKaoBookCollectionViewCell", bundle: nil)
-        collectionView.register(bookCellNib, forCellWithReuseIdentifier: "KaKaoBookCollectionViewCell")
-        
+        collectionView.prefetchDataSource = self
         collectionView.bounces = false
         
         configureCollectionViewLayout()
@@ -42,21 +39,18 @@ class BookWardmCollectionViewController: UICollectionViewController {
         
     }
     
+
+    
+    
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "SearchViewController")
-//        let nav = UINavigationController(rootViewController: vc)
-//
-//        nav.modalPresentationStyle = .fullScreen
-//
-//        present(nav, animated: true)
-        collectionView.reloadData()
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let vc = sb.instantiateViewController(withIdentifier: "SearchViewController")
+        let nav = UINavigationController(rootViewController: vc)
+
+        nav.modalPresentationStyle = .fullScreen
+
+        present(nav, animated: true)
     }
-    
-    @IBAction func tappedToDismissKeyboard(_ sender: UITapGestureRecognizer) {
-        view.endEditing(true)
-    }
-    
     
     func confgureNavBarButton() {
         searchButton.image = UIImage(systemName: "magnifyingglass")
@@ -90,12 +84,9 @@ class BookWardmCollectionViewController: UICollectionViewController {
 extension BookWardmCollectionViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard let keyword = searchBar.text else {
-            callRequest(keyword: "")
-            return
-        }
-        callRequest(keyword: keyword)
-
+        guard let keyword = searchBar.text else { return }
+        searchBar.resignFirstResponder()
+        callRequest(searchWord: keyword, page: page)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
@@ -122,19 +113,19 @@ extension BookWardmCollectionViewController: CellFlowLayoutProtocol {
 
 
 extension BookWardmCollectionViewController {
-    func callRequest(keyword: String) {
+    func callRequest(searchWord: String, page: Int) {
         
-        //MARK: - text가 빈 경우 대체 텍스트 넣어주기
-        let text = "\(keyword)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
-        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)"
+        let text = "\(searchWord)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
+        let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=20&page=\(page)"
         let header: HTTPHeaders = ["Authorization": "KakaoAK 4ff3c73e4fc0c6d0b359297fb7f949ba"]
         
         AF.request(url, method: .get, headers: header).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-                
+
                 var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0)
+                
                 for item in json["documents"].arrayValue {
                     book.title = item["title"].stringValue
                     book.author = item["authors"].stringValue
@@ -143,11 +134,46 @@ extension BookWardmCollectionViewController {
                     book.price = item["price"].intValue
                     self.bookList.append(book)
                 }
-                print(self.bookList)
-                
+                self.collectionView.reloadData()
             case .failure(let error):
                 print(error)
             }
         }
     }
+    
+    func configureSearchBar() {
+        navigationItem.titleView = searchBar
+        searchBar.showsCancelButton = true
+        searchBar.delegate = self
+        searchBar.placeholder = "도서명을 검색하세요."
+        searchBar.searchBarStyle = .prominent
+    }
+    
+    func configureNavAndTabBar() {
+        self.navigationItem.title = "새우의 책장"
+        self.tabBarController?.tabBar.tintColor = .black
+        self.tabBarController?.tabBar.backgroundColor = .white
+    }
+    
+    func registerNib() {
+        let bookCellNib = UINib(nibName: "KaKaoBookCollectionViewCell", bundle: nil)
+        collectionView.register(bookCellNib, forCellWithReuseIdentifier: "KaKaoBookCollectionViewCell")
+    }
 }
+
+
+extension BookWardmCollectionViewController: UICollectionViewDataSourcePrefetching {
+    
+    func collectionView(_ collectionView: UICollectionView, prefetchItemsAt indexPaths: [IndexPath]) {
+        guard let searchWord = searchBar.text else { return }
+        
+        for indexPath in indexPaths {
+            if bookList.count - 1 == indexPath.row && page < 50 && !isEnd {
+               page += 1
+               callRequest(searchWord: searchWord, page: page)
+           }
+        }
+    }
+}
+
+

@@ -31,8 +31,8 @@ class BookShelfViewController: UIViewController, LikeButtonProtocol {
         bookshelfCollectionView.delegate = self
         configureCollectionViewLayout()
         
-        let nib = UINib(nibName: "BookShelfCollectionViewCell", bundle: nil)
-        bookshelfCollectionView.register(nib, forCellWithReuseIdentifier: "BookShelfCollectionViewCell")
+        let kakaoBookShelfNib = UINib(nibName: "KaKaoBookShelfCollectionViewCell", bundle: nil)
+        bookshelfCollectionView.register(kakaoBookShelfNib, forCellWithReuseIdentifier: "KaKaoBookShelfCollectionViewCell")
     }
 }
 

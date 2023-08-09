@@ -15,7 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         UINavigationBar.appearance().tintColor = .black
         UINavigationBar.appearance().backgroundColor = .white
-        IQKeyboardManager.shared.enable = true
+//        IQKeyboardManager.shared.enable = true
         return true
     }
 }
