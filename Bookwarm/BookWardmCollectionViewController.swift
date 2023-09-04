@@ -18,8 +18,6 @@ class BookWardmCollectionViewController: UICollectionViewController {
     var isEnd: Bool = false
     
     let searchBar = UISearchBar()
-
-    
     
     @IBOutlet var searchButton: UIBarButtonItem!
     
@@ -38,9 +36,6 @@ class BookWardmCollectionViewController: UICollectionViewController {
         confgureNavBarButton()
         
     }
-    
-
-    
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
@@ -72,12 +67,15 @@ class BookWardmCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 
         
-        let sb = UIStoryboard(name: "Main", bundle: nil)
-        let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-
-        vc.book = bookList[indexPath.row]
         
-        navigationController?.pushViewController(vc, animated: true)
+        
+        
+//        let sb = UIStoryboard(name: "Main", bundle: nil)
+//        let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+//
+//        vc.book = bookList[indexPath.row]
+//
+//        navigationController?.pushViewController(vc, animated: true)
     }
 }
 

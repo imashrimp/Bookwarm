@@ -12,6 +12,9 @@
 		1720A1622A7A3188000E1E1B /* BookShelfTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1720A1602A7A3188000E1E1B /* BookShelfTableViewCell.xib */; };
 		1720A1672A7A3387000E1E1B /* BookShelfCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1720A1652A7A3387000E1E1B /* BookShelfCollectionViewCell.swift */; };
 		1720A1682A7A3387000E1E1B /* BookShelfCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1720A1662A7A3387000E1E1B /* BookShelfCollectionViewCell.xib */; };
+		1731D6212AA5B38700F8C5C7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1731D6202AA5B38700F8C5C7 /* Realm */; };
+		1731D6232AA5B38700F8C5C7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1731D6222AA5B38700F8C5C7 /* RealmSwift */; };
+		1731D6252AA5B4E900F8C5C7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */; };
 		1781B9112A821D1100888E05 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9102A821D1100888E05 /* SwiftyJSON */; };
 		1781B9142A821D1E00888E05 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9132A821D1E00888E05 /* Alamofire */; };
 		1781B9172A821E8100888E05 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9162A821E8100888E05 /* Kingfisher */; };
@@ -42,6 +45,7 @@
 		1720A1602A7A3188000E1E1B /* BookShelfTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookShelfTableViewCell.xib; sourceTree = "<group>"; };
 		1720A1652A7A3387000E1E1B /* BookShelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfCollectionViewCell.swift; sourceTree = "<group>"; };
 		1720A1662A7A3387000E1E1B /* BookShelfCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookShelfCollectionViewCell.xib; sourceTree = "<group>"; };
+		1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		1781B9182A821EB000888E05 /* KaKaoBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KaKaoBookCollectionViewCell.swift; path = XIB/KaKaoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		1781B9192A821EB000888E05 /* KaKaoBookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KaKaoBookCollectionViewCell.xib; path = XIB/KaKaoBookCollectionViewCell.xib; sourceTree = "<group>"; };
 		1781B9202A8238F300888E05 /* Kakao Book Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kakao Book Model.swift"; sourceTree = "<group>"; };
@@ -69,10 +73,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1731D6232AA5B38700F8C5C7 /* RealmSwift in Frameworks */,
 				1781B9172A821E8100888E05 /* Kingfisher in Frameworks */,
 				1781B9142A821D1E00888E05 /* Alamofire in Frameworks */,
 				1781B9112A821D1100888E05 /* SwiftyJSON in Frameworks */,
 				17BE43602A7BC65F0072FEA7 /* IQKeyboardManagerSwift in Frameworks */,
+				1731D6212AA5B38700F8C5C7 /* Realm in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,6 +144,7 @@
 				178DA4F02A779BFF00FCFECB /* LaunchScreen.storyboard */,
 				1720A15D2A7A3145000E1E1B /* BookShelfViewController.swift */,
 				178DA4F32A779BFF00FCFECB /* Info.plist */,
+				1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */,
 			);
 			path = Bookwarm;
 			sourceTree = "<group>";
@@ -163,6 +170,8 @@
 				1781B9102A821D1100888E05 /* SwiftyJSON */,
 				1781B9132A821D1E00888E05 /* Alamofire */,
 				1781B9162A821E8100888E05 /* Kingfisher */,
+				1731D6202AA5B38700F8C5C7 /* Realm */,
+				1731D6222AA5B38700F8C5C7 /* RealmSwift */,
 			);
 			productName = Bookwarm;
 			productReference = 178DA4E22A779BFE00FCFECB /* Bookwarm.app */;
@@ -197,6 +206,7 @@
 				1781B90F2A821D1100888E05 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				1781B9122A821D1E00888E05 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1781B9152A821E8100888E05 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				1731D61F2AA5B38700F8C5C7 /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			productRefGroup = 178DA4E32A779BFE00FCFECB /* Products */;
 			projectDirPath = "";
@@ -243,6 +253,7 @@
 				178DA4FF2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift in Sources */,
 				17F724812A82660D009162D1 /* KaKaoBookShelfCollectionViewCell.swift in Sources */,
 				178DA4FA2A779D3600FCFECB /* BookWardmCollectionViewController.swift in Sources */,
+				1731D6252AA5B4E900F8C5C7 /* RealmModel.swift in Sources */,
 				1720A1612A7A3188000E1E1B /* BookShelfTableViewCell.swift in Sources */,
 				178DA5062A77B59500FCFECB /* DetailViewController.swift in Sources */,
 			);
@@ -464,6 +475,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		1731D61F2AA5B38700F8C5C7 /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift.git";
+			requirement = {
+				kind = exactVersion;
+				version = 10.42.1;
+			};
+		};
 		1781B90F2A821D1100888E05 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -499,6 +518,16 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		1731D6202AA5B38700F8C5C7 /* Realm */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1731D61F2AA5B38700F8C5C7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = Realm;
+		};
+		1731D6222AA5B38700F8C5C7 /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 1731D61F2AA5B38700F8C5C7 /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
+		};
 		1781B9102A821D1100888E05 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 1781B90F2A821D1100888E05 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
