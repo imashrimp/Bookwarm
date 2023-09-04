@@ -93,27 +93,29 @@ class BookWardmCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-  
-        let item = bookList[indexPath.row]
-                
-        let bookToSave = BookTable(title: item.title, author: item.author, thumbnail: item.thumbnail, overview: item.overview, price: item.price)
         
-        guard let savedBookList = realmBook else { return }
-        
-        
-        if savedBookList.contains(where: { $0.isbn == bookToSave.isbn }) {
-           return
-        } else {
-            try! realm.write {
-                
-                realm.add(bookToSave)
-                print(bookToSave)
-                print("Realm add succeed")
-                print(savedBookList)
+        if distributionID == .searched {
+            let item = bookList[indexPath.row]
+                    
+            let bookToSave = BookTable(title: item.title, author: item.author, thumbnail: item.thumbnail, overview: item.overview, price: item.price)
+            
+            guard let savedBookList = realmBook else { return }
+            
+            
+            if savedBookList.contains(where: { $0.isbn == bookToSave.isbn }) {
+               return
+            } else {
+                try! realm.write {
+                    
+                    realm.add(bookToSave)
+                    print(bookToSave)
+                    print("Realm add succeed")
+                    print(savedBookList)
+                }
             }
         }
-        
-        
+        //MARK: - 여기서는 저장된 책(컬렉션뷰 셀)눌렀을 때, DB에서 삭제하는 로직 작성
+  
 
         //        let sb = UIStoryboard(name: "Main", bundle: nil)
         //        let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
