@@ -15,7 +15,7 @@ class DetailViewController: UIViewController {
     
     var transitionTypeID: TransitionID?
     var movieData = Movie(title: "", releaseDate: "", runtime: 0, overview: "", rate: 0, like: false, color: .black)
-    var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0)
+    var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0, isbn: "")
     var textViewPlaceholder: String = "후기를 작성해주세요."
     
     @IBOutlet var moviePosterImage: UIImageView!
@@ -71,7 +71,7 @@ class DetailViewController: UIViewController {
     
     func showsendedData() {
         
-        guard let imageUrl = URL(string: book.thumbnail) else {
+        guard let urlString = book.thumbnail, let imageUrl = URL(string: urlString) else {
             moviePosterImage.image = UIImage(systemName: "book.fill")
             return
         }

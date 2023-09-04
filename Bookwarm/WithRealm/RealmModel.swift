@@ -9,23 +9,24 @@ import Foundation
 import RealmSwift
 
 class BookTable: Object {
-    
-    @Persisted(primaryKey: true) var _id: ObjectId
+
+    @Persisted(primaryKey: true) var isbn: String
     @Persisted var title: String
     @Persisted var author: String?
-    @Persisted var thumnail: String?
+    @Persisted var thumbnail: String?
     @Persisted var overview: String?
     @Persisted var price: Int?
+
     
     convenience init(title: String,
                      author: String?,
-                     thumnail: String? ,
+                     thumbnail: String? ,
                      overview: String? ,
                      price: Int?) {
         self.init()
         self.title = title
         self.author = author
-        self.thumnail = thumnail
+        self.thumbnail = thumbnail
         self.overview = overview
         self.price = price
     }

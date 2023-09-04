@@ -18,7 +18,7 @@ class KaKaoBookShelfCollectionViewCell: UICollectionViewCell {
     }
 
     func showBookImage(book: Book) {
-        guard let imageUrl = URL(string: book.thumbnail) else {
+        guard let urlString = book.thumbnail, let imageUrl = URL(string: urlString  ) else {
             bookImageView.image = UIImage(systemName: "book.fill")
             return
         }

@@ -22,7 +22,16 @@ class KaKaoBookCollectionViewCell: UICollectionViewCell {
 
     func showBookContents(book: Book) {
         
-        guard let imageUrl = URL(string: book.thumbnail) else {
+        guard let urlString = book.thumbnail,  let imageUrl = URL(string: urlString) else {
+            imageView.image = UIImage(systemName: "book.fill")
+            return
+        }
+        imageView.kf.setImage(with: imageUrl)
+        bookTitleLabel.text = book.title
+    }
+    
+    func showSavedBookContents(book: BookTable) {
+        guard let urlString = book.thumbnail,  let imageUrl = URL(string: urlString) else {
             imageView.image = UIImage(systemName: "book.fill")
             return
         }

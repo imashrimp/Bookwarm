@@ -10,10 +10,16 @@
 import UIKit
 import SwiftyJSON
 import Alamofire
+import RealmSwift
 
 class BookWardmCollectionViewController: UICollectionViewController {
     
+    var realmBook: Results<BookTable>?
     var bookList: [Book] = []
+    var distributionID: DistributionID = .none
+    
+    let realm = try! Realm()
+    
     var page: Int = 1
     var isEnd: Bool = false
     
@@ -35,15 +41,19 @@ class BookWardmCollectionViewController: UICollectionViewController {
         configureCollectionViewLayout()
         confgureNavBarButton()
         
+
+        
+        realmBook = realm.objects(BookTable.self)
+        
     }
     
     @IBAction func searchButtonTapped(_ sender: UIBarButtonItem) {
         let sb = UIStoryboard(name: "Main", bundle: nil)
         let vc = sb.instantiateViewController(withIdentifier: "SearchViewController")
         let nav = UINavigationController(rootViewController: vc)
-
+        
         nav.modalPresentationStyle = .fullScreen
-
+        
         present(nav, animated: true)
     }
     
@@ -52,42 +62,79 @@ class BookWardmCollectionViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return bookList.count
+        
+        switch distributionID {
+        case .searched:
+            return bookList.count
+        case .none:
+            return realmBook?.count ?? 0
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "KaKaoBookCollectionViewCell", for: indexPath) as! KaKaoBookCollectionViewCell
         
-        cell.showBookContents(book: bookList[indexPath.row])
+        switch distributionID {
+        case .searched:
+            cell.showBookContents(book: bookList[indexPath.row])
+        case .none:
+            
+            guard let bookData = realmBook else {
+                return UICollectionViewCell()
+            }
+            cell.showSavedBookContents(book: bookData[indexPath.row])
+//            cell.showBookContents(book: realmB1ook[indexPath.row])
+        }
+        
+
         
         return cell
     }
     
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+  
+        let item = bookList[indexPath.row]
+                
+        let bookToSave = BookTable(title: item.title, author: item.author, thumbnail: item.thumbnail, overview: item.overview, price: item.price)
+        
+        guard let savedBookList = realmBook else { return }
+        
+        
+        if savedBookList.contains(where: { $0.isbn == bookToSave.isbn }) {
+           return
+        } else {
+            try! realm.write {
+                
+                realm.add(bookToSave)
+                print(bookToSave)
+                print("Realm add succeed")
+                print(savedBookList)
+            }
+        }
+        
+        
 
-        
-        
-        
-        
-//        let sb = UIStoryboard(name: "Main", bundle: nil)
-//        let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
-//
-//        vc.book = bookList[indexPath.row]
-//
-//        navigationController?.pushViewController(vc, animated: true)
+        //        let sb = UIStoryboard(name: "Main", bundle: nil)
+        //        let vc = sb.instantiateViewController(withIdentifier: "DetailViewController") as! DetailViewController
+        //
+        //        vc.book = bookList[indexPath.row]
+        //
+        //        navigationController?.pushViewController(vc, animated: true)
     }
 }
 
 extension BookWardmCollectionViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        distributionID = .searched
         guard let keyword = searchBar.text else { return }
         searchBar.resignFirstResponder()
         callRequest(searchWord: keyword, page: page)
     }
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        distributionID = .none
         searchBar.text = ""
         bookList.removeAll()
         collectionView.reloadData()
@@ -121,8 +168,8 @@ extension BookWardmCollectionViewController {
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
-
-                var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0)
+                
+                var book: Book = Book(title: "", author: "", thumbnail: "", overview: "", price: 0, isbn: "")
                 
                 for item in json["documents"].arrayValue {
                     book.title = item["title"].stringValue
@@ -130,6 +177,7 @@ extension BookWardmCollectionViewController {
                     book.thumbnail = item["thumbnail"].stringValue
                     book.overview = item["contents"].stringValue
                     book.price = item["price"].intValue
+                    book.isbn = item["isbn"].stringValue
                     self.bookList.append(book)
                 }
                 self.collectionView.reloadData()
@@ -167,9 +215,9 @@ extension BookWardmCollectionViewController: UICollectionViewDataSourcePrefetchi
         
         for indexPath in indexPaths {
             if bookList.count - 1 == indexPath.row && page < 50 && !isEnd {
-               page += 1
-               callRequest(searchWord: searchWord, page: page)
-           }
+                page += 1
+                callRequest(searchWord: searchWord, page: page)
+            }
         }
     }
 }
