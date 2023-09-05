@@ -16,6 +16,7 @@
 		1731D6232AA5B38700F8C5C7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1731D6222AA5B38700F8C5C7 /* RealmSwift */; };
 		1731D6252AA5B4E900F8C5C7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */; };
 		1731D6282AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D6272AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift */; };
+		1731D62C2AA614FC00F8C5C7 /* TotalBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D62B2AA614FC00F8C5C7 /* TotalBook.swift */; };
 		1781B9112A821D1100888E05 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9102A821D1100888E05 /* SwiftyJSON */; };
 		1781B9142A821D1E00888E05 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9132A821D1E00888E05 /* Alamofire */; };
 		1781B9172A821E8100888E05 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9162A821E8100888E05 /* Kingfisher */; };
@@ -33,6 +34,13 @@
 		178DA5022A77A4B200FCFECB /* MovieData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA5012A77A4B200FCFECB /* MovieData.swift */; };
 		178DA5042A77B18600FCFECB /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA5032A77B18600FCFECB /* SearchViewController.swift */; };
 		178DA5062A77B59500FCFECB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178DA5052A77B59500FCFECB /* DetailViewController.swift */; };
+		17A5C1352AA722D700355054 /* BookWormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1342AA722D700355054 /* BookWormViewController.swift */; };
+		17A5C1382AA722F000355054 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 17A5C1372AA722F000355054 /* SnapKit */; };
+		17A5C13A2AA7272200355054 /* Extension+CellID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1392AA7272200355054 /* Extension+CellID.swift */; };
+		17A5C13E2AA72D8E00355054 /* APIMananger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C13D2AA72D8E00355054 /* APIMananger.swift */; };
+		17A5C1402AA7344C00355054 /* BookModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C13F2AA7344C00355054 /* BookModel.swift */; };
+		17A5C1452AA7374000355054 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = 17A5C1442AA7374000355054 /* .gitignore */; };
+		17A5C1472AA7375B00355054 /* APIKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1462AA7375B00355054 /* APIKeys.swift */; };
 		17BE43552A7A74450072FEA7 /* VCTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE43542A7A74450072FEA7 /* VCTransitionID.swift */; };
 		17BE435D2A7BAE2D0072FEA7 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */; };
 		17BE43602A7BC65F0072FEA7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 17BE435F2A7BC65F0072FEA7 /* IQKeyboardManagerSwift */; };
@@ -48,6 +56,7 @@
 		1720A1662A7A3387000E1E1B /* BookShelfCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookShelfCollectionViewCell.xib; sourceTree = "<group>"; };
 		1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
 		1731D6272AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDistributionID.swift; sourceTree = "<group>"; };
+		1731D62B2AA614FC00F8C5C7 /* TotalBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBook.swift; sourceTree = "<group>"; };
 		1781B9182A821EB000888E05 /* KaKaoBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KaKaoBookCollectionViewCell.swift; path = XIB/KaKaoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		1781B9192A821EB000888E05 /* KaKaoBookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KaKaoBookCollectionViewCell.xib; path = XIB/KaKaoBookCollectionViewCell.xib; sourceTree = "<group>"; };
 		1781B9202A8238F300888E05 /* Kakao Book Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Kakao Book Model.swift"; sourceTree = "<group>"; };
@@ -64,6 +73,12 @@
 		178DA5012A77A4B200FCFECB /* MovieData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieData.swift; sourceTree = "<group>"; };
 		178DA5032A77B18600FCFECB /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = SOURCE_ROOT; };
 		178DA5052A77B59500FCFECB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = SOURCE_ROOT; };
+		17A5C1342AA722D700355054 /* BookWormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookWormViewController.swift; sourceTree = "<group>"; };
+		17A5C1392AA7272200355054 /* Extension+CellID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+CellID.swift"; sourceTree = "<group>"; };
+		17A5C13D2AA72D8E00355054 /* APIMananger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIMananger.swift; sourceTree = "<group>"; };
+		17A5C13F2AA7344C00355054 /* BookModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookModel.swift; sourceTree = "<group>"; };
+		17A5C1442AA7374000355054 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		17A5C1462AA7375B00355054 /* APIKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIKeys.swift; sourceTree = "<group>"; };
 		17BE43542A7A74450072FEA7 /* VCTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTransitionID.swift; sourceTree = SOURCE_ROOT; };
 		17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Protocol.swift; path = Cell/Protocol.swift; sourceTree = "<group>"; };
 		17F7247F2A82660D009162D1 /* KaKaoBookShelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaKaoBookShelfCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -78,6 +93,7 @@
 				1731D6232AA5B38700F8C5C7 /* RealmSwift in Frameworks */,
 				1781B9172A821E8100888E05 /* Kingfisher in Frameworks */,
 				1781B9142A821D1E00888E05 /* Alamofire in Frameworks */,
+				17A5C1382AA722F000355054 /* SnapKit in Frameworks */,
 				1781B9112A821D1100888E05 /* SwiftyJSON in Frameworks */,
 				17BE43602A7BC65F0072FEA7 /* IQKeyboardManagerSwift in Frameworks */,
 				1731D6212AA5B38700F8C5C7 /* Realm in Frameworks */,
@@ -110,8 +126,12 @@
 		1731D6262AA5BB9600F8C5C7 /* WithRealm */ = {
 			isa = PBXGroup;
 			children = (
-				1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */,
+				17A5C1332AA722C800355054 /* VC */,
+				17A5C13C2AA728E200355054 /* Model */,
 				1731D6272AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift */,
+				17A5C13B2AA728D300355054 /* Extension */,
+				17A5C1412AA736EB00355054 /* Network */,
+				17A5C13F2AA7344C00355054 /* BookModel.swift */,
 			);
 			path = WithRealm;
 			sourceTree = "<group>";
@@ -138,6 +158,7 @@
 				1731D6262AA5BB9600F8C5C7 /* WithRealm */,
 				1781B9182A821EB000888E05 /* KaKaoBookCollectionViewCell.swift */,
 				1781B9202A8238F300888E05 /* Kakao Book Model.swift */,
+				1731D62B2AA614FC00F8C5C7 /* TotalBook.swift */,
 				1781B9192A821EB000888E05 /* KaKaoBookCollectionViewCell.xib */,
 				17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */,
 				17BE43542A7A74450072FEA7 /* VCTransitionID.swift */,
@@ -156,8 +177,42 @@
 				178DA4F02A779BFF00FCFECB /* LaunchScreen.storyboard */,
 				1720A15D2A7A3145000E1E1B /* BookShelfViewController.swift */,
 				178DA4F32A779BFF00FCFECB /* Info.plist */,
+				17A5C1442AA7374000355054 /* .gitignore */,
 			);
 			path = Bookwarm;
+			sourceTree = "<group>";
+		};
+		17A5C1332AA722C800355054 /* VC */ = {
+			isa = PBXGroup;
+			children = (
+				17A5C1342AA722D700355054 /* BookWormViewController.swift */,
+			);
+			path = VC;
+			sourceTree = "<group>";
+		};
+		17A5C13B2AA728D300355054 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				17A5C1392AA7272200355054 /* Extension+CellID.swift */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		17A5C13C2AA728E200355054 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		17A5C1412AA736EB00355054 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				17A5C13D2AA72D8E00355054 /* APIMananger.swift */,
+				17A5C1462AA7375B00355054 /* APIKeys.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -183,6 +238,7 @@
 				1781B9162A821E8100888E05 /* Kingfisher */,
 				1731D6202AA5B38700F8C5C7 /* Realm */,
 				1731D6222AA5B38700F8C5C7 /* RealmSwift */,
+				17A5C1372AA722F000355054 /* SnapKit */,
 			);
 			productName = Bookwarm;
 			productReference = 178DA4E22A779BFE00FCFECB /* Bookwarm.app */;
@@ -218,6 +274,7 @@
 				1781B9122A821D1E00888E05 /* XCRemoteSwiftPackageReference "Alamofire" */,
 				1781B9152A821E8100888E05 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				1731D61F2AA5B38700F8C5C7 /* XCRemoteSwiftPackageReference "realm-swift" */,
+				17A5C1362AA722F000355054 /* XCRemoteSwiftPackageReference "SnapKit" */,
 			);
 			productRefGroup = 178DA4E32A779BFE00FCFECB /* Products */;
 			projectDirPath = "";
@@ -240,6 +297,7 @@
 				178DA4EF2A779BFF00FCFECB /* Assets.xcassets in Resources */,
 				1781B91B2A821EB000888E05 /* KaKaoBookCollectionViewCell.xib in Resources */,
 				1720A1622A7A3188000E1E1B /* BookShelfTableViewCell.xib in Resources */,
+				17A5C1452AA7374000355054 /* .gitignore in Resources */,
 				178DA4ED2A779BFE00FCFECB /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,10 +312,14 @@
 				178DA5022A77A4B200FCFECB /* MovieData.swift in Sources */,
 				1781B9212A8238F300888E05 /* Kakao Book Model.swift in Sources */,
 				178DA5042A77B18600FCFECB /* SearchViewController.swift in Sources */,
+				17A5C1352AA722D700355054 /* BookWormViewController.swift in Sources */,
+				17A5C1402AA7344C00355054 /* BookModel.swift in Sources */,
+				17A5C1472AA7375B00355054 /* APIKeys.swift in Sources */,
 				1731D6282AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift in Sources */,
 				17BE435D2A7BAE2D0072FEA7 /* Protocol.swift in Sources */,
 				17BE43552A7A74450072FEA7 /* VCTransitionID.swift in Sources */,
 				1720A1672A7A3387000E1E1B /* BookShelfCollectionViewCell.swift in Sources */,
+				1731D62C2AA614FC00F8C5C7 /* TotalBook.swift in Sources */,
 				178DA4E62A779BFE00FCFECB /* AppDelegate.swift in Sources */,
 				178DA4E82A779BFE00FCFECB /* SceneDelegate.swift in Sources */,
 				1720A15E2A7A3145000E1E1B /* BookShelfViewController.swift in Sources */,
@@ -267,6 +329,8 @@
 				178DA4FA2A779D3600FCFECB /* BookWardmCollectionViewController.swift in Sources */,
 				1731D6252AA5B4E900F8C5C7 /* RealmModel.swift in Sources */,
 				1720A1612A7A3188000E1E1B /* BookShelfTableViewCell.swift in Sources */,
+				17A5C13A2AA7272200355054 /* Extension+CellID.swift in Sources */,
+				17A5C13E2AA72D8E00355054 /* APIMananger.swift in Sources */,
 				178DA5062A77B59500FCFECB /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -419,7 +483,6 @@
 				INFOPLIST_FILE = Bookwarm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -447,7 +510,6 @@
 				INFOPLIST_FILE = Bookwarm/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -519,6 +581,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		17A5C1362AA722F000355054 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		17BE435E2A7BC65F0072FEA7 /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager";
@@ -554,6 +624,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 1781B9152A821E8100888E05 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		17A5C1372AA722F000355054 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 17A5C1362AA722F000355054 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
 		};
 		17BE435F2A7BC65F0072FEA7 /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;

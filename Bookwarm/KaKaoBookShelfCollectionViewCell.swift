@@ -16,6 +16,7 @@ class KaKaoBookShelfCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
 
     }
+    
 
     func showBookImage(book: Book) {
         guard let urlString = book.thumbnail, let imageUrl = URL(string: urlString  ) else {
