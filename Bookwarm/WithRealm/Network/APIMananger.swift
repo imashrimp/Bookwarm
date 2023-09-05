@@ -24,12 +24,9 @@ class APIMananger {
         AF.request(url, method: .get, headers: header).validate()
             .responseDecodable(of: BookModel.self) { response in
                 let value = response.result
-                dump(response)
-                print("=========")
                 
                 switch value {
                 case .success(let success):
-                    dump(success)
                     completionHandler(success)
                 case .failure(let error):
                     print(error)

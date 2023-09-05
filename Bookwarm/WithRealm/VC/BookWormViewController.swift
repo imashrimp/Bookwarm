@@ -54,22 +54,12 @@ extension BookWormViewController: UICollectionViewDelegate {
         
         let vc = BookDetailInfoViewController()
 
-        vc.book = bookInfo[indexPath.row]
+        let book = bookInfo[indexPath.row]
+        
+        vc.book = BookTable(isbn: book.isbn, title: book.title, author: book.authors.first, publisher: book.publisher, thumbnail: book.thumbnail, overview: book.contents, price: book.price, like: nil, myMemo: nil)
         
         navigationController?.pushViewController(vc, animated: true)
         
-//        여기서는 realm에 저장
-//        let item = bookInfo[indexPath.row]
-//
-//        let book = BookTable(isbn: item.isbn, title: item.title, author: item.authors.first, thumbnail: item.thumbnail, overview: item.contents, price: item.price)
-//
-//        let realm = try! Realm()
-//
-//        try! realm.write {
-//            realm.add(book)
-//            print("저장됨")
-//            print(realm.configuration.fileURL)
-//        }
     }
 }
 

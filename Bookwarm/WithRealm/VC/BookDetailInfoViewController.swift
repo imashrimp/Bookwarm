@@ -7,10 +7,14 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class BookDetailInfoViewController: UIViewController {
     
-    var book: Document?
+    var book: BookTable?
+    var likeStatement: Bool?
+    
+    let realm = try! Realm()
     
     let bookImage = {
         let view = UIImageView()
@@ -41,16 +45,12 @@ class BookDetailInfoViewController: UIViewController {
     let memoTitleLabel = CustomLabel()
     let memoTextView = CustomTextView()
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         setConstraints()
     }
-    
-
-    
-
 }
 
 extension BookDetailInfoViewController {
@@ -60,16 +60,16 @@ extension BookDetailInfoViewController {
         tabBarController?.tabBar.isHidden = true
         
         [
-        bookImage,
-        titleLabel,
-        authorLabel,
-        publisherLabel,
-        priceLabel,
-        likeButton,
-        overviewTitleLabel,
-        overViewTextView,
-        memoTitleLabel,
-        memoTextView
+            bookImage,
+            titleLabel,
+            authorLabel,
+            publisherLabel,
+            priceLabel,
+            likeButton,
+            overviewTitleLabel,
+            overViewTextView,
+            memoTitleLabel,
+            memoTextView
         ].forEach {
             view.addSubview($0)
         }
@@ -77,20 +77,52 @@ extension BookDetailInfoViewController {
         overviewTitleLabel.text = "줄거리"
         memoTitleLabel.text = "메모"
         
-        guard let mybook = book, let author = mybook.authors.first else { return }
-        
+        guard
+            let mybook = book,
+                let author = mybook.author,
+                let publisher = mybook.publisher,
+                let price = mybook.price else {
+            return
+        }
+
         titleLabel.text = "제목: \(mybook.title)"
         authorLabel.text = "저자: \(author)"
-        publisherLabel.text = "출판사: \(mybook.publisher)"
-        priceLabel.text = "가격: \(mybook.price)원"
-        overViewTextView.text = mybook.contents
+        publisherLabel.text = "출판사: \(publisher)"
+        priceLabel.text = "가격: \(price)원"
+        overViewTextView.text = mybook.overview
         
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
     }
     
     @objc func likeButtonTapped() {
+        //여기서는 realm에 저장
+        let realm = try! Realm()
         
+        //만약에 저장된 데이터가 아니면 그대로 보여주고 저장된 데이터면 저장된 값을 보여주자
+        
+        likeStatement = true
+        
+        guard let like = likeStatement else { return }
+                
+        guard let bookData = book, let author = bookData.author else { return }
+        
+        let myBook = BookTable(isbn: bookData.isbn,
+                               title: bookData.title,
+                               author: author,
+                               publisher: bookData.publisher,
+                               thumbnail: bookData.thumbnail,
+                               overview: bookData.overview,
+                               price: bookData.price,
+                               like: like,
+                               myMemo: "")
+        
+        
+        
+        try! realm.write {
+            realm.add(myBook)
+        }
     }
+    
     func setConstraints() {
         bookImage.snp.makeConstraints { make in
             make.top.leading.equalTo(view.safeAreaLayoutGuide).offset(8)

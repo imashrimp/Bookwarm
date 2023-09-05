@@ -19,22 +19,29 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
         
-        let vc = BookWormViewController()
+        let vc1 = BookWormViewController()
+        let vc2 = MyFavBookViewController()
         
-        let bookwormVC = UINavigationController(rootViewController: vc)
+        let bookwormVC = UINavigationController(rootViewController: vc1)
+        let bookshelfVC = UINavigationController(rootViewController: vc2)
         
         let tabBarcontroller = UITabBarController()
         tabBarcontroller.tabBar.tintColor = .systemGreen
-        tabBarcontroller.setViewControllers([bookwormVC], animated: true)
+        tabBarcontroller.setViewControllers([bookwormVC, bookshelfVC], animated: true)
         
         if let items = tabBarcontroller.tabBar.items {
             items[0].selectedImage = UIImage(systemName: "ant.fill")
             items[0].image = UIImage(systemName: "ant")
             items[0].title = "책벌레"
+            
+            items[1].selectedImage = UIImage(systemName: "book.fill")
+            items[1].image = UIImage(systemName: "book")
+            items[1].title = "책장"
         }
         
         window?.rootViewController = tabBarcontroller
-        window?.makeKeyAndVisible()    }
+        window?.makeKeyAndVisible()
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.
