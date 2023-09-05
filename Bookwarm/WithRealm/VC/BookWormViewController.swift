@@ -7,10 +7,11 @@
 
 import UIKit
 import SnapKit
+import RealmSwift
 
 class BookWormViewController: UIViewController {
     
-    var books: BookModel?
+    var bookInfo: [Document] = []
     
     lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
@@ -33,31 +34,50 @@ class BookWormViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .white
         view.addSubview(collectionView)
         navigationItem.titleView = searchBar()
         setConstraints()
-        
-        APIMananger.shared.callRequest(keyword: "소고기") { bookData in
-            self.books = bookData
-        }
     }
     
     func setConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
     
 }
 
 extension BookWormViewController: UICollectionViewDelegate {
-    
+ 
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        let vc = BookDetailInfoViewController()
+
+        vc.book = bookInfo[indexPath.row]
+        
+        navigationController?.pushViewController(vc, animated: true)
+        
+//        여기서는 realm에 저장
+//        let item = bookInfo[indexPath.row]
+//
+//        let book = BookTable(isbn: item.isbn, title: item.title, author: item.authors.first, thumbnail: item.thumbnail, overview: item.contents, price: item.price)
+//
+//        let realm = try! Realm()
+//
+//        try! realm.write {
+//            realm.add(book)
+//            print("저장됨")
+//            print(realm.configuration.fileURL)
+//        }
+    }
 }
 
 extension BookWormViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 1
+                
+        return bookInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -68,8 +88,10 @@ extension BookWormViewController: UICollectionViewDataSource {
             return UICollectionViewCell()
         }
 
+        let item = bookInfo[indexPath.row]
+        
         cell.imageView.image = UIImage(systemName: "star")
-        cell.bookTitlelabel.text = "제목"
+        cell.bookTitlelabel.text = item.title
         
         return cell
     }
@@ -79,10 +101,21 @@ extension BookWormViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         // 여기는 화면에 띄운 컬렉션뷰 초기화
+//        var booklist = book.documents
+        searchBar.text = ""
+        bookInfo.removeAll()
+        collectionView.reloadData()
+    
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //여기서 api 호출
+        guard let keyword = searchBar.text else { return }
+        searchBar.resignFirstResponder()
+        APIMananger.shared.callRequest(keyword: keyword) { bookData in
+            self.bookInfo = bookData.documents
+            self.collectionView.reloadData()
+        }
     }
 }
 

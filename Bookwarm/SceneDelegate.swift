@@ -18,8 +18,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let scene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: scene)
+        
         let vc = BookWormViewController()
-        window?.rootViewController = UINavigationController(rootViewController: vc)
+        
+        let bookwormVC = UINavigationController(rootViewController: vc)
+        
+        let tabBarcontroller = UITabBarController()
+        tabBarcontroller.tabBar.tintColor = .systemGreen
+        tabBarcontroller.setViewControllers([bookwormVC], animated: true)
+        
+        if let items = tabBarcontroller.tabBar.items {
+            items[0].selectedImage = UIImage(systemName: "ant.fill")
+            items[0].image = UIImage(systemName: "ant")
+            items[0].title = "책벌레"
+        }
+        
+        window?.rootViewController = tabBarcontroller
         window?.makeKeyAndVisible()    }
 
     func sceneDidDisconnect(_ scene: UIScene) {

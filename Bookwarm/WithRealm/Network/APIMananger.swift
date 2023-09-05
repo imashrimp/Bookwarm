@@ -16,7 +16,6 @@ class APIMananger {
     
     func callRequest(keyword: String, completionHandler: @escaping (BookModel) -> Void) {
         
-        
         let text = "\(keyword)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
         let url = "https://dapi.kakao.com/v3/search/book?query=\(text)&size=50"
         

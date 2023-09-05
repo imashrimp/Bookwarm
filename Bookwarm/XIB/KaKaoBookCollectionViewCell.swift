@@ -10,14 +10,10 @@ import Kingfisher
 
 class KaKaoBookCollectionViewCell: UICollectionViewCell {
 
-//    @IBOutlet var imageView: UIImageView!
-//    @IBOutlet var bookTitleLabel: UILabel!
     
     let imageView = {
         let view = UIImageView()
         view.contentMode = .scaleAspectFit
-//        view.backgroundColor = .lightGray
-//        view.layer.cornerRadius = 8
         return view
     }()
     
@@ -44,7 +40,7 @@ class KaKaoBookCollectionViewCell: UICollectionViewCell {
     
     func configure() {
         contentView.backgroundColor = .lightGray
-        contentView.layer.cornerRadius = 15 //MARK: - 이거 여기서 하는거 맞나 모르겠네...
+        contentView.layer.cornerRadius = 15
     }
     
     func setConstraints() {
@@ -58,34 +54,4 @@ class KaKaoBookCollectionViewCell: UICollectionViewCell {
             make.top.equalTo(imageView.snp.bottom).offset(8)
         }
     }
-    
-//    func dtoTest(dtoData: TotalBook) {
-//        guard let urlString = dtoData.thumbnail,  let imageUrl = URL(string: urlString) else {
-//            imageView.image = UIImage(systemName: "book.fill")
-//            return
-//        }
-//        imageView.kf.setImage(with: imageUrl)
-//        bookTitleLabel.text = dtoData.title
-//    }
-    
-
-//    func showBookContents(book: Book/*TotalBook*/) {
-//
-//        guard let urlString = book.thumbnail,  let imageUrl = URL(string: urlString) else {
-//            imageView.image = UIImage(systemName: "book.fill")
-//            return
-//        }
-//        imageView.kf.setImage(with: imageUrl)
-//        bookTitleLabel.text = book.title
-//    }
-//
-//
-//    func showSavedBookContents(book: BookTable) {
-//        guard let urlString = book.thumbnail,  let imageUrl = URL(string: urlString) else {
-//            imageView.image = UIImage(systemName: "book.fill")
-//            return
-//        }
-//        imageView.kf.setImage(with: imageUrl)
-//        bookTitleLabel.text = book.title
-//    }
 }
