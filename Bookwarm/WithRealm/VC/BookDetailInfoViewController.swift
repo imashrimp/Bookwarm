@@ -13,6 +13,7 @@ class BookDetailInfoViewController: UIViewController {
     
     var book: BookTable?
     var likeStatement: Bool?
+    var bookStatement: DistributionID?
     
     let realm = try! Realm()
     
@@ -48,8 +49,41 @@ class BookDetailInfoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(realm.configuration.fileURL)
         configure()
         setConstraints()
+        showBookInfo()
+    }
+    
+    func showBookInfo() {
+        
+        guard
+            let mybook = book,
+            let author = mybook.author,
+            let publisher = mybook.publisher,
+            let price = mybook.price,
+            let urlString = mybook.thumbnail else {
+            return
+        }
+        
+        titleLabel.text = "제목: \(mybook.title)"
+        authorLabel.text = "저자: \(author)"
+        publisherLabel.text = "출판사: \(publisher)"
+        priceLabel.text = "가격: \(price)원"
+        overViewTextView.text = mybook.overview
+        
+        guard let url = URL(string: urlString) else { return }
+        DispatchQueue.global().async {
+            do {
+                let data = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    self.bookImage.image = UIImage(data: data)
+                }
+            } catch {
+                print(error)
+            }
+        }
+        
     }
 }
 
@@ -77,20 +111,6 @@ extension BookDetailInfoViewController {
         overviewTitleLabel.text = "줄거리"
         memoTitleLabel.text = "메모"
         
-        guard
-            let mybook = book,
-                let author = mybook.author,
-                let publisher = mybook.publisher,
-                let price = mybook.price else {
-            return
-        }
-
-        titleLabel.text = "제목: \(mybook.title)"
-        authorLabel.text = "저자: \(author)"
-        publisherLabel.text = "출판사: \(publisher)"
-        priceLabel.text = "가격: \(price)원"
-        overViewTextView.text = mybook.overview
-        
         likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
     }
     
@@ -100,10 +120,10 @@ extension BookDetailInfoViewController {
         
         //만약에 저장된 데이터가 아니면 그대로 보여주고 저장된 데이터면 저장된 값을 보여주자
         
-        likeStatement = true
+        likeStatement = true // 이건 뭐야?
         
         guard let like = likeStatement else { return }
-                
+        
         guard let bookData = book, let author = bookData.author else { return }
         
         let myBook = BookTable(isbn: bookData.isbn,
@@ -116,10 +136,17 @@ extension BookDetailInfoViewController {
                                like: like,
                                myMemo: "")
         
-        
-        
         try! realm.write {
             realm.add(myBook)
+            print("저장됨")
+        }
+        likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
+        //여기서 이미지가 nil이 아니몀 도큐먼트에 이미지 파일 저장하는 메서드 호출
+        //이거 맞는지 확인해보기
+        
+        if bookImage.image != nil {
+            saveImageToDocument(fileName: "imashrimp\(bookData.isbn).jpg", image: bookImage.image!)
+            print("도큐먼트에 이미지 저장됨.")
         }
     }
     

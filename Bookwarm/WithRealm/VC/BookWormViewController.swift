@@ -16,7 +16,7 @@ class BookWormViewController: UIViewController {
     lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
         view.register(KaKaoBookCollectionViewCell.self,
-                                forCellWithReuseIdentifier: KaKaoBookCollectionViewCell.id)
+                      forCellWithReuseIdentifier: KaKaoBookCollectionViewCell.id)
         view.dataSource = self
         view.delegate = self
         
@@ -40,49 +40,64 @@ class BookWormViewController: UIViewController {
         setConstraints()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        tabBarController?.tabBar.isHidden = false
+    }
+    
     func setConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
     }
-    
 }
 
 extension BookWormViewController: UICollectionViewDelegate {
- 
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let vc = BookDetailInfoViewController()
-
+        
         let book = bookInfo[indexPath.row]
+        
+        vc.bookStatement = .searched
         
         vc.book = BookTable(isbn: book.isbn, title: book.title, author: book.authors.first, publisher: book.publisher, thumbnail: book.thumbnail, overview: book.contents, price: book.price, like: nil, myMemo: nil)
         
         navigationController?.pushViewController(vc, animated: true)
-        
     }
 }
 
 extension BookWormViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                
         return bookInfo.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        guard
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KaKaoBookCollectionViewCell.id, for: indexPath) as?
-                KaKaoBookCollectionViewCell else {
-            return UICollectionViewCell()
-        }
-
         let item = bookInfo[indexPath.row]
         
-        cell.imageView.image = UIImage(systemName: "star")
-        cell.bookTitlelabel.text = item.title
+        guard
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KaKaoBookCollectionViewCell.id, for: indexPath) as?
+                KaKaoBookCollectionViewCell,
+            let url = URL(string: item.thumbnail) else {
+            return UICollectionViewCell()
+        }
         
+        
+        cell.bookTitlelabel.text = item.title
+        DispatchQueue.global().async {
+            
+            do {
+                let urlData = try Data(contentsOf: url)
+                DispatchQueue.main.async {
+                    cell.imageView.image = UIImage(data: urlData)
+                }
+            } catch {
+                cell.imageView.image = UIImage(systemName: "star.fill")
+            }
+        }
         return cell
     }
 }
@@ -90,16 +105,15 @@ extension BookWormViewController: UICollectionViewDataSource {
 extension BookWormViewController: UISearchBarDelegate {
     
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        // 여기는 화면에 띄운 컬렉션뷰 초기화
-//        var booklist = book.documents
+        
         searchBar.text = ""
         bookInfo.removeAll()
         collectionView.reloadData()
-    
+        
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //여기서 api 호출
+
         guard let keyword = searchBar.text else { return }
         searchBar.resignFirstResponder()
         APIMananger.shared.callRequest(keyword: keyword) { bookData in

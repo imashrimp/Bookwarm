@@ -10,7 +10,8 @@ import RealmSwift
 
 class BookTable: Object {
     
-    @Persisted(primaryKey: true) var isbn: String
+    @Persisted(primaryKey: true) var _id: ObjectId
+    @Persisted var isbn: String
     @Persisted var title: String
     @Persisted var author: String?
     @Persisted var publisher: String?

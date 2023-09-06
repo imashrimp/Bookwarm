@@ -45,6 +45,7 @@
 		17A5C14E2AA74D9C00355054 /* CustomLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C14D2AA74D9C00355054 /* CustomLabel.swift */; };
 		17A5C1522AA7517F00355054 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1512AA7517F00355054 /* CustomTextView.swift */; };
 		17A5C1542AA7823000355054 /* MyFavBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1532AA7823000355054 /* MyFavBookViewController.swift */; };
+		17A5C1562AA78E3D00355054 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1552AA78E3D00355054 /* FileManager+Extension.swift */; };
 		17BE43552A7A74450072FEA7 /* VCTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE43542A7A74450072FEA7 /* VCTransitionID.swift */; };
 		17BE435D2A7BAE2D0072FEA7 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */; };
 		17BE43602A7BC65F0072FEA7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 17BE435F2A7BC65F0072FEA7 /* IQKeyboardManagerSwift */; };
@@ -87,6 +88,7 @@
 		17A5C14D2AA74D9C00355054 /* CustomLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomLabel.swift; sourceTree = "<group>"; };
 		17A5C1512AA7517F00355054 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		17A5C1532AA7823000355054 /* MyFavBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavBookViewController.swift; sourceTree = "<group>"; };
+		17A5C1552AA78E3D00355054 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		17BE43542A7A74450072FEA7 /* VCTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTransitionID.swift; sourceTree = SOURCE_ROOT; };
 		17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Protocol.swift; path = Cell/Protocol.swift; sourceTree = "<group>"; };
 		17F7247F2A82660D009162D1 /* KaKaoBookShelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaKaoBookShelfCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				17A5C1392AA7272200355054 /* Extension+CellID.swift */,
+				17A5C1552AA78E3D00355054 /* FileManager+Extension.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -334,6 +337,7 @@
 				1781B9212A8238F300888E05 /* Kakao Book Model.swift in Sources */,
 				178DA5042A77B18600FCFECB /* SearchViewController.swift in Sources */,
 				17A5C1352AA722D700355054 /* BookWormViewController.swift in Sources */,
+				17A5C1562AA78E3D00355054 /* FileManager+Extension.swift in Sources */,
 				17A5C1402AA7344C00355054 /* BookModel.swift in Sources */,
 				17A5C1472AA7375B00355054 /* APIKeys.swift in Sources */,
 				17A5C1492AA74D2B00355054 /* BookDetailInfoViewController.swift in Sources */,

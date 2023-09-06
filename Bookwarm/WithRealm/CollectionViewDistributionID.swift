@@ -8,5 +8,5 @@
 import Foundation
 
 enum DistributionID {
-    case searched, none
+    case searched, saved
 }
