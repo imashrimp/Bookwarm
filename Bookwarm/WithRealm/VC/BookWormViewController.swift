@@ -9,11 +9,11 @@ import UIKit
 import SnapKit
 import RealmSwift
 
-class BookWormViewController: UIViewController {
+final class BookWormViewController: UIViewController {
     
-    var bookInfo: [Document] = []
+    private var bookInfo: [Document] = []
     
-    lazy var collectionView = {
+    private lazy var collectionView = {
         let view = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
         view.register(KaKaoBookCollectionViewCell.self,
                       forCellWithReuseIdentifier: KaKaoBookCollectionViewCell.id)
@@ -23,7 +23,7 @@ class BookWormViewController: UIViewController {
         return view
     }()
     
-    lazy var searchBar = {
+    private lazy var searchBar = {
         let view = UISearchBar()
         view.delegate = self
         view.showsCancelButton = true
@@ -45,7 +45,7 @@ class BookWormViewController: UIViewController {
         tabBarController?.tabBar.isHidden = false
     }
     
-    func setConstraints() {
+    private func setConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalTo(view.safeAreaLayoutGuide)
         }
@@ -60,9 +60,14 @@ extension BookWormViewController: UICollectionViewDelegate {
         
         let book = bookInfo[indexPath.row]
         
-        vc.bookStatement = .searched
-        
-        vc.book = BookTable(isbn: book.isbn, title: book.title, author: book.authors.first, publisher: book.publisher, thumbnail: book.thumbnail, overview: book.contents, price: book.price, myMemo: nil)
+        vc.book = BookTable(isbn: book.isbn,
+                            title: book.title,
+                            author: book.authors.first,
+                            publisher: book.publisher,
+                            thumbnail: book.thumbnail,
+                            overview: book.contents,
+                            price: book.price,
+                            memo: nil)
         
         navigationController?.pushViewController(vc, animated: true)
     }
@@ -125,7 +130,7 @@ extension BookWormViewController: UISearchBarDelegate {
 
 extension BookWormViewController {
     
-    func configureCollectionViewLayout() -> UICollectionViewFlowLayout {
+    private func configureCollectionViewLayout() -> UICollectionViewFlowLayout {
         
         let layout = UICollectionViewFlowLayout()
         let spacing: CGFloat = 20

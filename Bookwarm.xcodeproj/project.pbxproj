@@ -15,7 +15,6 @@
 		1731D6212AA5B38700F8C5C7 /* Realm in Frameworks */ = {isa = PBXBuildFile; productRef = 1731D6202AA5B38700F8C5C7 /* Realm */; };
 		1731D6232AA5B38700F8C5C7 /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 1731D6222AA5B38700F8C5C7 /* RealmSwift */; };
 		1731D6252AA5B4E900F8C5C7 /* RealmModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */; };
-		1731D6282AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D6272AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift */; };
 		1731D62C2AA614FC00F8C5C7 /* TotalBook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1731D62B2AA614FC00F8C5C7 /* TotalBook.swift */; };
 		1781B9112A821D1100888E05 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9102A821D1100888E05 /* SwiftyJSON */; };
 		1781B9142A821D1E00888E05 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 1781B9132A821D1E00888E05 /* Alamofire */; };
@@ -46,6 +45,7 @@
 		17A5C1522AA7517F00355054 /* CustomTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1512AA7517F00355054 /* CustomTextView.swift */; };
 		17A5C1542AA7823000355054 /* MyFavBookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1532AA7823000355054 /* MyFavBookViewController.swift */; };
 		17A5C1562AA78E3D00355054 /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1552AA78E3D00355054 /* FileManager+Extension.swift */; };
+		17A5C1842AA8AEE600355054 /* SavedBookDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A5C1832AA8AEE600355054 /* SavedBookDetailViewController.swift */; };
 		17BE43552A7A74450072FEA7 /* VCTransitionID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE43542A7A74450072FEA7 /* VCTransitionID.swift */; };
 		17BE435D2A7BAE2D0072FEA7 /* Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */; };
 		17BE43602A7BC65F0072FEA7 /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 17BE435F2A7BC65F0072FEA7 /* IQKeyboardManagerSwift */; };
@@ -60,7 +60,6 @@
 		1720A1652A7A3387000E1E1B /* BookShelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookShelfCollectionViewCell.swift; sourceTree = "<group>"; };
 		1720A1662A7A3387000E1E1B /* BookShelfCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BookShelfCollectionViewCell.xib; sourceTree = "<group>"; };
 		1731D6242AA5B4E900F8C5C7 /* RealmModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmModel.swift; sourceTree = "<group>"; };
-		1731D6272AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewDistributionID.swift; sourceTree = "<group>"; };
 		1731D62B2AA614FC00F8C5C7 /* TotalBook.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalBook.swift; sourceTree = "<group>"; };
 		1781B9182A821EB000888E05 /* KaKaoBookCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = KaKaoBookCollectionViewCell.swift; path = XIB/KaKaoBookCollectionViewCell.swift; sourceTree = "<group>"; };
 		1781B9192A821EB000888E05 /* KaKaoBookCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = KaKaoBookCollectionViewCell.xib; path = XIB/KaKaoBookCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -89,6 +88,7 @@
 		17A5C1512AA7517F00355054 /* CustomTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTextView.swift; sourceTree = "<group>"; };
 		17A5C1532AA7823000355054 /* MyFavBookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavBookViewController.swift; sourceTree = "<group>"; };
 		17A5C1552AA78E3D00355054 /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		17A5C1832AA8AEE600355054 /* SavedBookDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SavedBookDetailViewController.swift; sourceTree = "<group>"; };
 		17BE43542A7A74450072FEA7 /* VCTransitionID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VCTransitionID.swift; sourceTree = SOURCE_ROOT; };
 		17BE435C2A7BAE2D0072FEA7 /* Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Protocol.swift; path = Cell/Protocol.swift; sourceTree = "<group>"; };
 		17F7247F2A82660D009162D1 /* KaKaoBookShelfCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KaKaoBookShelfCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -139,7 +139,6 @@
 				17A5C14A2AA74D7D00355054 /* CustomUI */,
 				17A5C1332AA722C800355054 /* VC */,
 				17A5C13C2AA728E200355054 /* Model */,
-				1731D6272AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift */,
 				17A5C13B2AA728D300355054 /* Extension */,
 				17A5C1412AA736EB00355054 /* Network */,
 			);
@@ -198,6 +197,7 @@
 				17A5C1342AA722D700355054 /* BookWormViewController.swift */,
 				17A5C1482AA74D2B00355054 /* BookDetailInfoViewController.swift */,
 				17A5C1532AA7823000355054 /* MyFavBookViewController.swift */,
+				17A5C1832AA8AEE600355054 /* SavedBookDetailViewController.swift */,
 			);
 			path = VC;
 			sourceTree = "<group>";
@@ -341,7 +341,6 @@
 				17A5C1402AA7344C00355054 /* BookModel.swift in Sources */,
 				17A5C1472AA7375B00355054 /* APIKeys.swift in Sources */,
 				17A5C1492AA74D2B00355054 /* BookDetailInfoViewController.swift in Sources */,
-				1731D6282AA5BBD600F8C5C7 /* CollectionViewDistributionID.swift in Sources */,
 				17A5C14E2AA74D9C00355054 /* CustomLabel.swift in Sources */,
 				17BE435D2A7BAE2D0072FEA7 /* Protocol.swift in Sources */,
 				17BE43552A7A74450072FEA7 /* VCTransitionID.swift in Sources */,
@@ -354,6 +353,7 @@
 				1781B91A2A821EB000888E05 /* KaKaoBookCollectionViewCell.swift in Sources */,
 				178DA4FF2A779D8B00FCFECB /* BookWarmCollectionViewCell.swift in Sources */,
 				17F724812A82660D009162D1 /* KaKaoBookShelfCollectionViewCell.swift in Sources */,
+				17A5C1842AA8AEE600355054 /* SavedBookDetailViewController.swift in Sources */,
 				178DA4FA2A779D3600FCFECB /* BookWardmCollectionViewController.swift in Sources */,
 				1731D6252AA5B4E900F8C5C7 /* RealmModel.swift in Sources */,
 				1720A1612A7A3188000E1E1B /* BookShelfTableViewCell.swift in Sources */,

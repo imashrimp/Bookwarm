@@ -37,7 +37,7 @@ class MyFavBookViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        tabBarController?.tabBar.isHidden = false
         collectionView.reloadData()
     }
 }
@@ -46,17 +46,27 @@ extension MyFavBookViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        guard let dataList = savedBooks else { return }
+        let vc = SavedBookDetailViewController()
         
-        let bookToRemove = dataList[indexPath.row]
+        guard let bookList = savedBooks else { return }
         
-        removeImageFromDocument(fileName: "imashrimp\(bookToRemove._id).jpg")
+        vc.book = bookList[indexPath.row]
+        vc.bookID = bookList[indexPath.row]._id
+        vc.savedBookIndex = indexPath.row
         
-        try! realm.write {
-            realm.delete(bookToRemove)
-        }
+        navigationController?.pushViewController(vc, animated: true)
         
-        collectionView.reloadData()
+//        guard let dataList = savedBooks else { return }
+//        
+//        let bookToRemove = dataList[indexPath.row]
+//        
+//        removeImageFromDocument(fileName: "imashrimp\(bookToRemove._id).jpg")
+//        
+//        try! realm.write {
+//            realm.delete(bookToRemove)
+//        }
+//        
+//        collectionView.reloadData()
     }
 }
 
@@ -90,8 +100,6 @@ extension MyFavBookViewController: UICollectionViewDataSource {
         
         return cell
     }
-    
-    
 }
 
 extension MyFavBookViewController {

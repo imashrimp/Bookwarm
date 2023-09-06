@@ -1,17 +1,19 @@
 //
-//  BookDetailInfoViewController.swift
+//  SavedBookDetailViewController.swift
 //  Bookwarm
 //
-//  Created by 권현석 on 2023/09/05.
+//  Created by 권현석 on 2023/09/06.
 //
 
 import UIKit
 import SnapKit
 import RealmSwift
 
-class BookDetailInfoViewController: UIViewController {
+class SavedBookDetailViewController: UIViewController {
     
     var book: BookTable?
+    var savedBookIndex: Int?
+    var bookID: ObjectId?
     
     let realm = try! Realm()
     
@@ -45,50 +47,83 @@ class BookDetailInfoViewController: UIViewController {
     let memoTitleLabel = CustomLabel()
     let memoTextView = CustomTextView()
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(realm.configuration.fileURL)
         configure()
         setConstraints()
-        
+        showSavedBookInfo()
     }
     
-
-    
-    private func showNotSavedBookInfo() {
+    private func showSavedBookInfo() {
         
-        guard
-            let mybook = book,
-            let author = mybook.author,
-            let publisher = mybook.publisher,
-            let price = mybook.price,
-            let urlString = mybook.thumbnail else {
-            return
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "삭제",
+                                                            style: .plain,
+                                                            target: self,
+                                                            action: #selector(deleteButtonTapped))
+        
+        guard let myBookID = bookID else { return }
+        
+        let myBook = realm.objects(BookTable.self).where {
+            $0._id == myBookID
         }
         
-        titleLabel.text = "제목: \(mybook.title)"
+        guard let myBookData = myBook.first,
+        let author = myBookData.author,
+        let publisher = myBookData.publisher,
+        let price = myBookData.price else { return }
+        
+        titleLabel.text = "제목: \(myBookData.title)"
         authorLabel.text = "저자: \(author)"
         publisherLabel.text = "출판사: \(publisher)"
         priceLabel.text = "가격: \(price)원"
-        overViewTextView.text = mybook.overview
+        overViewTextView.text = myBookData.overview
+        memoTextView.text = myBookData.memo
+        bookImage.image = loadImageFromDocument(fileName: "imashrimp\(myBookData._id).jpg")
+    
+    }
+    
+    @objc func deleteButtonTapped() {
+        let bookList = realm.objects(BookTable.self)
         
-        guard let url = URL(string: urlString) else { return }
-        DispatchQueue.global().async {
-            do {
-                let data = try Data(contentsOf: url)
-                DispatchQueue.main.async {
-                    self.bookImage.image = UIImage(data: data)
-                }
-            } catch {
-                print(error)
-            }
+        guard
+            let index = savedBookIndex else { return }
+        
+        removeImageFromDocument(fileName: "imashrimp\(bookList[index]._id).jpg")
+        
+        try! realm.write {
+            realm.delete(bookList[index])
         }
         
+        navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func updateBookInfo() {
+        
+        let bookList = realm.objects(BookTable.self)
+        
+        guard
+            let index = savedBookIndex,
+        let memo = memoTextView.text else {
+            return
+        }
+                
+        do {
+            try realm.write {
+                realm.create(BookTable.self,
+                             value: ["_id": bookList[index]._id,
+                                     "memo": memo],
+                             update: .modified)
+            }
+        } catch {
+            print(error)
+        }
+        
+        
+        navigationController?.popViewController(animated: true)
     }
 }
 
-extension BookDetailInfoViewController {
+extension SavedBookDetailViewController {
     
     func configure() {
         view.backgroundColor = .white
@@ -109,47 +144,14 @@ extension BookDetailInfoViewController {
             view.addSubview($0)
         }
         
-        
-        
         overviewTitleLabel.text = "줄거리"
         memoTitleLabel.text = "메모"
         
-        likeButton.addTarget(self, action: #selector(likeButtonTapped), for: .touchUpInside)
+        likeButton.addTarget(self,
+                             action: #selector(updateBookInfo),
+                             for: .touchUpInside)
     }
     
-    @objc func likeButtonTapped() {
-        
-        let realm = try! Realm()
-        
-        guard let bookData = book, let author = bookData.author else { return }
-        
-
-            
-            let myBook = BookTable(isbn: bookData.isbn,
-                                   title: bookData.title,
-                                   author: author,
-                                   publisher: bookData.publisher,
-                                   thumbnail: bookData.thumbnail,
-                                   overview: bookData.overview,
-                                   price: bookData.price,
-                                   memo: "")
-            
-            try! realm.write {
-                realm.add(myBook)
-            }
-            
-            likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-            
-            if bookImage.image != nil {
-                saveImageToDocument(fileName: "imashrimp\(myBook._id).jpg", image: bookImage.image!)
-            } else {
-                
-            }
-            navigationController?.popViewController(animated: true)
-        
-    }
-    
-
     
     func setConstraints() {
         bookImage.snp.makeConstraints { make in
@@ -208,5 +210,4 @@ extension BookDetailInfoViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide).inset(8)
         }
     }
-    
 }

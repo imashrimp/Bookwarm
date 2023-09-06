@@ -13,7 +13,6 @@ class CustomTextView: UITextView {
         super.init(frame: frame, textContainer: textContainer)
         
         font = .systemFont(ofSize: 15)
-        isEditable = false
         textAlignment = .left
         
     }
