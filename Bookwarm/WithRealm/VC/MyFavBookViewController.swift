@@ -16,8 +16,10 @@ class MyFavBookViewController: UIViewController {
     var savedBooks: Results<BookTable>?
     
     lazy var collectionView = {
-        let view = UICollectionView(frame: .zero, collectionViewLayout: configureCollectionViewLayout())
-        view.register(KaKaoBookCollectionViewCell.self, forCellWithReuseIdentifier: KaKaoBookCollectionViewCell.id)
+        let view = UICollectionView(frame: .zero,
+                                    collectionViewLayout: configureCollectionViewLayout())
+        view.register(KaKaoBookCollectionViewCell.self,
+                      forCellWithReuseIdentifier: KaKaoBookCollectionViewCell.id)
         view.dataSource = self
         view.delegate = self
         return view
@@ -25,19 +27,37 @@ class MyFavBookViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(realm.configuration.fileURL )
+        print(realm.configuration.fileURL)
         view.backgroundColor = .white
         view.addSubview(collectionView)
         configure()
         setConstraints()
-        
         savedBooks = realm.objects(BookTable.self)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
         collectionView.reloadData()
     }
 }
 
 extension MyFavBookViewController: UICollectionViewDelegate {
-    
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        
+        guard let dataList = savedBooks else { return }
+        
+        let bookToRemove = dataList[indexPath.row]
+        
+        removeImageFromDocument(fileName: "imashrimp\(bookToRemove._id).jpg")
+        
+        try! realm.write {
+            realm.delete(bookToRemove)
+        }
+        
+        collectionView.reloadData()
+    }
 }
 
 extension MyFavBookViewController: UICollectionViewDataSource {
@@ -47,7 +67,6 @@ extension MyFavBookViewController: UICollectionViewDataSource {
             let books = savedBooks else {
             return 0
         }
-        
         return books.count
     }
     
@@ -55,14 +74,19 @@ extension MyFavBookViewController: UICollectionViewDataSource {
         
         guard
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: KaKaoBookCollectionViewCell.id,
-                                                          for: indexPath) as?
-                KaKaoBookCollectionViewCell,
+                                                          for: indexPath) as? KaKaoBookCollectionViewCell,
                 let books = savedBooks else {
             return UICollectionViewCell()
         }
         
-        cell.imageView.image = UIImage(systemName: "star.fill")
         cell.bookTitlelabel.text = books[indexPath.row].title
+        
+        guard
+            let bookImage = loadImageFromDocument(fileName: "imashrimp\(books[indexPath.row]._id).jpg") else {
+            return UICollectionViewCell()
+        }
+        
+        cell.imageView.image = bookImage
         
         return cell
     }
@@ -72,9 +96,7 @@ extension MyFavBookViewController: UICollectionViewDataSource {
 
 extension MyFavBookViewController {
     
-    func configure() {
-
-    }
+    func configure() { }
     
     func setConstraints() {
         collectionView.snp.makeConstraints { make in

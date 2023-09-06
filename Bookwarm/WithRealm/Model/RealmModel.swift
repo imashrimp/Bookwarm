@@ -18,7 +18,6 @@ class BookTable: Object {
     @Persisted var thumbnail: String?
     @Persisted var overview: String?
     @Persisted var price: Int?
-    @Persisted var like: Bool?
     @Persisted var myMemo: String?
     
     
@@ -29,7 +28,6 @@ class BookTable: Object {
                      thumbnail: String?,
                      overview: String?,
                      price: Int?,
-                     like: Bool?,
                      myMemo: String?)
     {
         self.init()
@@ -40,7 +38,6 @@ class BookTable: Object {
         self.thumbnail = thumbnail
         self.overview = overview
         self.price = price
-        self.like = like
         self.myMemo = myMemo
     }
 }

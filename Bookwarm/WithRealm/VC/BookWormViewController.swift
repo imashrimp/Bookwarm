@@ -62,7 +62,7 @@ extension BookWormViewController: UICollectionViewDelegate {
         
         vc.bookStatement = .searched
         
-        vc.book = BookTable(isbn: book.isbn, title: book.title, author: book.authors.first, publisher: book.publisher, thumbnail: book.thumbnail, overview: book.contents, price: book.price, like: nil, myMemo: nil)
+        vc.book = BookTable(isbn: book.isbn, title: book.title, author: book.authors.first, publisher: book.publisher, thumbnail: book.thumbnail, overview: book.contents, price: book.price, myMemo: nil)
         
         navigationController?.pushViewController(vc, animated: true)
     }

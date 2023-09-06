@@ -12,7 +12,6 @@ import RealmSwift
 class BookDetailInfoViewController: UIViewController {
     
     var book: BookTable?
-    var likeStatement: Bool?
     var bookStatement: DistributionID?
     
     let realm = try! Realm()
@@ -115,14 +114,8 @@ extension BookDetailInfoViewController {
     }
     
     @objc func likeButtonTapped() {
-        //여기서는 realm에 저장
+        
         let realm = try! Realm()
-        
-        //만약에 저장된 데이터가 아니면 그대로 보여주고 저장된 데이터면 저장된 값을 보여주자
-        
-        likeStatement = true // 이건 뭐야?
-        
-        guard let like = likeStatement else { return }
         
         guard let bookData = book, let author = bookData.author else { return }
         
@@ -133,20 +126,16 @@ extension BookDetailInfoViewController {
                                thumbnail: bookData.thumbnail,
                                overview: bookData.overview,
                                price: bookData.price,
-                               like: like,
                                myMemo: "")
         
         try! realm.write {
             realm.add(myBook)
-            print("저장됨")
         }
+        
         likeButton.setImage(UIImage(systemName: "star.fill"), for: .normal)
-        //여기서 이미지가 nil이 아니몀 도큐먼트에 이미지 파일 저장하는 메서드 호출
-        //이거 맞는지 확인해보기
         
         if bookImage.image != nil {
-            saveImageToDocument(fileName: "imashrimp\(bookData.isbn).jpg", image: bookImage.image!)
-            print("도큐먼트에 이미지 저장됨.")
+            saveImageToDocument(fileName: "imashrimp\(myBook._id).jpg", image: bookImage.image!)
         }
     }
     
